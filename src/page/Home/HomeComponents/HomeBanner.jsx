@@ -46,6 +46,7 @@ export default function HomeBanner() {
       <div className="relative overflow-hidden rounded-lg bg-white">
 
         {/* Horizontal Sliding Container */}
+        
         <motion.div
           className="flex w-full"
           animate={{ x: `-${index * 100}%` }}
