@@ -43,23 +43,23 @@ export default function HomeBanner() {
 
   return (
     <div className="">
-      <div className="relative overflow-hidden rounded-lg bg-white">
+      <div className="relative overflow-hidden rounded-2xl bg-white">
 
         {/* Horizontal Sliding Container */}
-        
+
         <motion.div
           className="flex w-full"
           animate={{ x: `-${index * 100}%` }}
           transition={{ duration: 0.7, ease: 'easeInOut' }} // smooth move
         >
           {items.map((item) => (
-            <div key={item.id} className="w-full h-full flex-shrink-0  ">
+            <div key={item.id} className="w-full md:max-h-120 flex-shrink-0  ">
 
                 <div className='flex flex-col md:flex-row items-center gap-5 justify-between p-8 md:p-20'>
 
-                    <div className='md:w-1/2 space-y-6'>
+                    <div className='space-y-4'>
 
-                    <img src={small} alt="" />
+                    <img src={small} alt="" quality={100} className='max-w-45 max-h-45'/>
 
                        <p className='text-black font-bold text-4xl md:text-5xl'> {item.title}</p>
 
@@ -78,8 +78,8 @@ export default function HomeBanner() {
 
                 
                     
-                    <div className='md:w-[40%]'>
-                          <img src={item.url} alt="" />
+                    <div className='md:w-[55%]'>
+                          <img src={item.url} alt=""  />
                     </div>
                       
                 </div>
