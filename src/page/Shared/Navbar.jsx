@@ -10,11 +10,11 @@ export default function Navbar() {
 
 
   return (
-    <nav className="w-full bg-white rounded-2xl  mb-5 shadow-sm">
+    <nav className="w-full bg-white rounded-2xl  mb-5 shadow-sm ">
       <div className="px-6 md:px-8 py-3 flex items-center justify-between">
 
         {/* LEFT LOGO */}
-        <Logo />
+        <Logo color={false} />
 
         {/* CENTER LINKS (DESKTOP) */}
         <div className="hidden md:flex text-[#606060] text-sm gap-6">

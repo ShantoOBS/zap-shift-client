@@ -6,7 +6,7 @@ import Footer from '../page/Shared/Footer'
 
 export default function RootLayout() {
   return (
-    <div className='bg-[#eaeced] text-black max-w-6xl mx-auto p-5 md:-15'>
+    <div className='bg-[#eaeced] text-black max-w-6xl mx-auto p-5 '>
          
         <Navbar></Navbar>
         <Outlet></Outlet>
