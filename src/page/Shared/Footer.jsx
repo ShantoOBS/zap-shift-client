@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "../../Compontens/Logo";
 import { Link } from "react-router";
-import facebook from "../../../public/assets/facebook.png";
-import linkden from "../../../public/assets/linkedin-icon 2.png";
-import youtube from "../../../public/assets/youtube.png";
-import twitter from "../../../public/assets/twitter-logo-2 3.png";
+import facebook from "/assets/facebook.png";
+import linkden from "/assets/linkedin-icon 2.png";
+import youtube from "/assets/youtube.png";
+import twitter from "/assets/twitter-logo-2 3.png";
 
 export default function Footer() {
   return (

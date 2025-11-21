@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-import small from '../../../../public/assets/tiny-deliveryman.png'
+import small from '/assets/tiny-deliveryman.png'
 import CircleButton from '../../../Compontens/CircleButton';
 
 
@@ -10,19 +10,19 @@ import CircleButton from '../../../Compontens/CircleButton';
 const items = [
   {
     id: 1,
-    url: '../../../../public/assets/delivery-man-1.png',
+    url: '/assets/delivery-man-1.png',
     title: 'We Make Sure Your Parcel Arrives On Time – No Fuss.',
  
   },
   {
     id: 2,
-    url: '../../../../public/assets/delivery_man.png',
+    url: '/assets/delivery_man.png',
     title: 'Fastest Delivery & Easy Pickup',
 
   },
   {
     id: 3,
-    url: '../../../../public/assets/delivery-man-2.png',
+    url: '/assets/delivery-man-2.png',
     title: 'Delivery in 30 Minutes at your doorstep',
     
   },

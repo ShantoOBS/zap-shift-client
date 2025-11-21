@@ -1,11 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import img1 from '../../../../public/assets/brands/amazon.png'
-import img2 from '../../../../public/assets/brands/casio.png'
-import img3 from '../../../../public/assets/brands/moonstar.png'
-import img4 from '../../../../public/assets/brands/randstad.png'
-import img5 from '../../../../public/assets/brands/star.png'
-import img6 from '../../../../public/assets/brands/start_people.png'
+import img1 from '/assets/brands/amazon.png'
+import img2 from '/assets/brands/casio.png'
+import img3 from '/assets/brands/moonstar.png'
+import img4 from '/assets/brands/randstad.png'
+import img5 from '/assets/brands/star.png'
+import img6 from '/assets/brands/start_people.png'
 
 export default function Sponser() {
   return (

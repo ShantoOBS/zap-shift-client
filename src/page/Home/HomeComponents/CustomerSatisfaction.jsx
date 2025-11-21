@@ -1,6 +1,6 @@
 import React from 'react'
-import locationMerchant from '../../../../public/assets/location-merchant.png'
-import bgMix from '../../../../public/assets/be-a-merchant-bg.png'
+import locationMerchant from '/assets/location-merchant.png'
+import bgMix from '/assets/be-a-merchant-bg.png'
 export default function CustomerSatisfaction() {
     return (
         <div className='bg-[#03373d] max-w-5xl rounded-2xl

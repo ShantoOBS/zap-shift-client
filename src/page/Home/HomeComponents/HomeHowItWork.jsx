@@ -5,22 +5,22 @@ const arr = [
     {
         title: "Booking Pick & Drop",
         subTittle: "From personal packages to business shipments — we deliver on time, every time.",
-        icon: "../../../../public/assets/bookingIcon.png"
+        icon: "/assets/bookingIcon.png"
     },
     {
         title: "Cash On Delivery",
         subTittle: "From personal packages to business shipments — we deliver on time, every time.",
-        icon: "../../../../public/assets/bookingIcon.png"
+        icon: "/assets/bookingIcon.png"
     },
     {
         title: "Delivery Hub",
         subTittle: "From personal packages to business shipments — we deliver on time, every time.",
-        icon: "../../../../public/assets/bookingIcon.png"
+        icon: "/assets/bookingIcon.png"
     },
     {
         title: "Booking SME & Corporate",
         subTittle: "From personal packages to business shipments — we deliver on time, every time.",
-        icon: "../../../../public/assets/bookingIcon.png"
+        icon: "/assets/bookingIcon.png"
     },
 ]
 

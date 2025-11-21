@@ -28,7 +28,7 @@ export default function Coverage() {
 
 
     return (
-        <div className='bg-white rounded-2xl p-5 md:p-10 my-10 min-h-[700px] '>
+        <div className='bg-white rounded-2xl p-5 md:p-10 my-10 min-h-[500px] '>
             <p className='text-2xl sm:text-3xl md:text-4xl font-bold'>We are available in 64 districts</p>
 
             <div className='my-5 md:my-10'>
@@ -61,11 +61,11 @@ export default function Coverage() {
 
               <p className='font-bold text-lg md:text-2xl mb-5 mt-10'>We deliver almost all over Bangladesh</p>
 
-            <div className=' w-full h-[100px]  md:h-[400px] '>
+            <div className=' w-full h-[200px]  md:h-[400px] '>
                 <MapContainer center={position}
                     zoom={8}
                     scrollWheelZoom={false}
-                    className='w-full h-[100px] md:h-[400px]'
+                    className='w-full h-[200px] md:h-[400px]'
                     ref={mapRef}
                 >
 

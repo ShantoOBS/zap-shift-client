@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import customer from "../../../../public/assets/customer-top.png";
+import customer from "/assets/customer-top.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const reviews = [

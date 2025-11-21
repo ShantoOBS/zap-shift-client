@@ -1,6 +1,6 @@
 import React from 'react'
-import img1 from '../../../../public/assets/live-tracking.png'
-import img2 from '../../../../public/assets/safe-delivery.png'
+import img1 from '/assets/live-tracking.png'
+import img2 from '/assets/safe-delivery.png'
 
 export default function Tracking() {
   return (

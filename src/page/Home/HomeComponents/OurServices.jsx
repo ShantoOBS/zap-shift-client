@@ -5,7 +5,7 @@ const arr = [
     {
         title: "Express  & Standard Delivery",
         subTittle: "We deliver parcels within 24–72 hours in Dhaka, Chittagong, Sylhet, Khulna, and Rajshahi.  Express delivery available in Dhaka within 4–6 hours from pick-up to drop-off.",
-        icon: "../../../../public/assets/service.png",
+        icon: "/assets/service.png",
     },
     {
         title: "Nationwide Delivery",

@@ -2,6 +2,13 @@ import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
 import Home from "../page/Home/Home";
 import Coverage from "../page/Coverage/Coverage";
+import About from "../page/About/About";
+import AuthLayout from "../layout/AuthLayout";
+import Login from "../page/Auth/Login";
+import Register from "../page/Auth/Register";
+import ForgetPassword from "../page/Auth/ForgetPassword";
+import EnterCode from "../page/Auth/EnterCode";
+import ResetPassword from "../page/Auth/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +24,37 @@ export const router = createBrowserRouter([
             loader: ()=>fetch('/warehouses.json').then(res=>res.json()),
             element: <Coverage></Coverage>
           },
+          {
+            path:'/about',
+            element: <About></About>
+          }
     ]
   },
+  {
+    path:'/',
+    element: <AuthLayout></AuthLayout>,
+    children:[
+         
+        {
+            path:'/login',
+            element: <Login></Login>
+        },
+        {
+          path:'/register',
+          element: <Register></Register>
+        },
+        {
+          path:'/forget',
+          element: <ForgetPassword></ForgetPassword>
+        },
+        {
+          path:'/enter-code',
+          element: <EnterCode></EnterCode>
+        },
+         {
+          path:'/reset-password',
+          element: <ResetPassword></ResetPassword>
+        }
+    ]
+  }
 ]);
