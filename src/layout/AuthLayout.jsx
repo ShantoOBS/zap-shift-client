@@ -9,7 +9,7 @@ export default function AuthLayout() {
 
       {/* LEFT SIDE (Form Section) */}
       <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col">
-        <Logo />
+        <Logo color={false} />
 
         <div className="py-4 md:px-16 lg:px-20 md:py-6 flex-1">
           <Outlet />
