@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import CircleButton from '../../../Compontens/CircleButton'
 export default function FQA() {
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -45,9 +45,8 @@ export default function FQA() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className={`collapse collapse-arrow border border-base-300 ${
-              openIndex === index ? 'bg-[#e6f2f3]' : 'bg-base-100'
-            }`}
+            className={`collapse collapse-arrow border border-base-300 ${openIndex === index ? 'bg-[#e6f2f3]' : 'bg-base-100'
+              }`}
           >
             <input
               type="radio"
@@ -55,12 +54,17 @@ export default function FQA() {
               checked={openIndex === index}
               onChange={() => setOpenIndex(index)}
             />
-            
+
             <div className="collapse-title font-semibold">{faq.question}</div>
-         
+
             <div className="collapse-content text-sm">{faq.answer}</div>
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-5">
+        <button className="btn rounded-md bg-[#caeb66] hover:bg-[#abc758] text-black">See More FAQ’s</button>
+        <CircleButton></CircleButton>
       </div>
     </div>
   );

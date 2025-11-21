@@ -68,11 +68,11 @@ export default function CustomerReview() {
       </div>
 
       {/* Title */}
-      <p className="text-xl md:text-3xl font-bold md:text-center">
+      <p className="text-xl md:text-3xl font-bold text-center">
         What our customers are saying
       </p>
 
-      <p className="text-xs md:text-sm text-[#606060] mt-2 mb-10 leading-relaxed md:text-center">
+      <p className="text-xs md:text-sm text-[#606060] mt-2 mb-10 leading-relaxed text-center">
        Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce <span className="hidden md:inline"><br /></span>
        pain, and strengthen your body with ease!
       </p>
