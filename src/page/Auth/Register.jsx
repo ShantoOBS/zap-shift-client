@@ -1,22 +1,48 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // react icons
 import useAuth from "../../Hooks/useAuth";
 import Social from "../../Compontens/Social";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
-  const { registerUser } = useAuth()
+  const { registerUser,updateUser } = useAuth();
+
+  const navigate=useNavigate();
+  const location=useLocation();
 
   const togglePassword = () => setShowPassword(!showPassword);
 
   const onSubmit = (data) => {
+    const file = data.photo[0];
     registerUser(data.email, data.password)
       .then(res => {
-        console.log(res);
+         
+           const formData = new FormData();
+            formData.append("image", file);
+             const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_FIREBASE_IMAGE_KEY}`;
+              axios.post(url, formData)
+              .then(res=>{
+                    const photo=res.data.data.url;
+                    const userData={
+                        displayName:data.name,
+                        photoURL:photo,
+                    }
+
+                    updateUser(userData)
+                    .then(()=>{
+                        console.log("profile update successfuly");
+                        toast.success("Account Created");
+                        navigate(location.state || '/')
+                    })
+
+
+              })
       })
       .catch(error => { console.log(error) })
   };
@@ -38,6 +64,10 @@ export default function Register() {
             {...register("name", { required: "Full Name is required" })}
           />
           {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
+         <label className="label">Photo</label>
+          <input type="file"
+          {...register("photo", { required: "Photo is required" })}
+          className="file-input file-input-ghost" />
 
           {/* Email */}
           <label className="label">Email</label>
@@ -81,7 +111,8 @@ export default function Register() {
       {/* LOGIN LINK */}
       <p className="text-[#71717a] text-xs md:text-sm mt-3">
         Already have an account?{" "}
-        <Link to="/login" className="text-black font-semibold link link-hover">
+        <Link state={location.state}
+        to="/login" className="text-black font-semibold link link-hover">
           Login
         </Link>
       </p>

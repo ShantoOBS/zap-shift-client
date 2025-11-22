@@ -9,6 +9,8 @@ import Register from "../page/Auth/Register";
 import ForgetPassword from "../page/Auth/ForgetPassword";
 import EnterCode from "../page/Auth/EnterCode";
 import ResetPassword from "../page/Auth/ResetPassword";
+import Pricing from "../page/Pricing/Pricing";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ export const router = createBrowserRouter([
           {
             path:'/about',
             element: <About></About>
+          },
+          {
+             path:'/pricing',
+             element: <PrivateRoutes> <Pricing></Pricing> </PrivateRoutes> 
           }
     ]
   },

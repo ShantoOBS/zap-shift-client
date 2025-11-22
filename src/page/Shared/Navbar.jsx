@@ -1,13 +1,24 @@
 import { useState } from "react";
-import { NavLink } from "react-router"; // NavLink for active detection
+import { NavLink,  } from "react-router"; // NavLink for active detection
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router";
 import Logo from "../../Compontens/Logo";
 import CircleButton from "../../Compontens/CircleButton";
+import useAuth from '../../Hooks/useAuth'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const {user,logOut}=useAuth();
+
+  const hendleLogOut=()=>{
+     
+       logOut()
+       .then(()=>{
+    
+       })
+       .catch(()=>{})
+  }
   // Tailwind classes for active link
   const activeClass =
     "bg-[#caeb66] text-black rounded-full px-3 py-1";
@@ -65,13 +76,22 @@ export default function Navbar() {
         {/* RIGHT BUTTONS (DESKTOP) */}
         <div className="hidden md:flex gap-3 items-center">
          
-         <Link to='/login'>
+          {
+             user ?  
+                <button onClick={hendleLogOut} className="px-4 py-2 border border-gray-300 rounded-md
+                cursor-pointer bg-white hover:bg-gray-100 text-[#606060]">
+             Sign Out
+            </button>
+
+         :  <Link to='/login'>
             
-                <button className="px-4 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-100 text-[#606060]">
+                <button className="px-4 py-2 border
+                cursor-pointer border-gray-300 rounded-md bg-white hover:bg-gray-100 text-[#606060]">
             Sign In
           </button>
 
          </Link>
+          }
 
           <div className="flex items-center gap-2">
             <button className="px-4 py-2 rounded-md bg-[#caeb66] hover:bg-[#abc758] text-black font-bold">

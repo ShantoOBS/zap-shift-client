@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Social from "../../Compontens/Social";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
@@ -8,9 +8,15 @@ import useAuth from "../../Hooks/useAuth";
 
 
 export default function Login() {
-   const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(!showPassword);
-  const {signInUser}=useAuth();
+    const {signInUser}=useAuth();
+
+    const location =useLocation();
+
+    const navigate=useNavigate();
+
+    console.log(location);
 
   const {
     register,
@@ -21,7 +27,7 @@ export default function Login() {
   const onSubmit = (data) => {
     signInUser(data.email,data.password)
     .then(res=>{
-       console.log(res);
+        navigate(location.state || '/');
     })
     .catch(error=>{console.log(error)})
   };
@@ -87,7 +93,8 @@ export default function Login() {
       </form>
 
       <p className="text-[#71717a] text-xs md:text-sm">
-        Don’t have any account?  <Link to="/register" className="text-black font-semibold link link-hover">
+        Don’t have any account?
+          <Link state={location.state} to="/register" className="text-black font-semibold link link-hover">
           Register
         </Link>
       </p>
