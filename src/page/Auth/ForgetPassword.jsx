@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 export default function ForgetPassword() {
   const {
@@ -9,8 +11,15 @@ export default function ForgetPassword() {
     formState: { errors },
   } = useForm();
 
+  const {forgetPassword}=useAuth();
+
   const onSubmit = (data) => {
-    console.log("Reset Request:", data);
+    forgetPassword(data.email)
+    .then(()=>{
+        toast("Check Your Email");
+    })
+    .catch(()=>{})
+
   };
 
   return (

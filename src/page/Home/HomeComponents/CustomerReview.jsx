@@ -89,6 +89,7 @@ export default function CustomerReview() {
               w-[45%] 
                  min-w-[250px]
               min-h-[200px]
+              mb-2
             "
             initial={{ opacity: 0 }}
             animate={getSlide(pos)}

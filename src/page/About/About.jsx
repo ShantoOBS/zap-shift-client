@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div className=" py-5 md:py-10 bg-white rounded-2xl p-10 md:p-15 mb-10 md:20">
+    <div className=" py-5 md:py-10 bg-white rounded-2xl p-10 md:p-15 mb-10 md:20 text-black">
       {/* Header */}
       <div className=" mb-8">
         <h2 className="text-3xl font-bold">About Us</h2>
@@ -12,11 +12,12 @@ export default function About() {
       </div>
 
       {/* Tabs */}
-      <div className="tabs tabs-boxed">
+      <div className="tabs tabs-boxed bg-white">
         {/* Story Tab */}
-        <input type="radio" name="about_tabs" className="tab" aria-label="Story" defaultChecked />
-        <div className="tab-content bg-base-100 border border-base-300 p-6 space-y-4 text-[#606060]">
-          <h3 className="text-xl font-semibold">Our Story</h3>
+        <input type="radio" name="about_tabs" className="tab text-black" aria-label="Story" defaultChecked />
+        <div className="tab-content border border-base-300 p-6 space-y-4
+          bg-white">
+          <h3 className="text-xl font-semibold text-black">Our Story</h3>
           <p>
             We started with a simple but powerful idea: parcel delivery shouldn’t be stressful. In a world where time is precious and expectations are high,
             we saw an opportunity to build something better — a service that values speed, transparency, and care.
@@ -32,9 +33,9 @@ export default function About() {
         </div>
 
         {/* Mission Tab */}
-        <input type="radio" name="about_tabs" className="tab" aria-label="Mission" />
-        <div className="tab-content bg-base-100 border border-base-300 p-6 space-y-4 text-[#606060]">
-          <h3 className="text-xl font-semibold">Our Mission</h3>
+        <input type="radio" name="about_tabs" className="tab text-black" aria-label="Mission" />
+        <div className="tab-content bg-white border border-base-300 p-6 space-y-4 ">
+          <h3 className="text-xl font-semibold text-black">Our Mission</h3>
           <p>
             Our mission is to redefine what delivery means in the modern age. We believe logistics should be invisible — smooth, fast, and worry-free.
             Whether it’s a birthday gift from a loved one or a critical business shipment, our goal is the same: deliver it safely, quickly, and with full transparency.
@@ -49,9 +50,9 @@ export default function About() {
         </div>
 
         {/* Success Tab */}
-        <input type="radio" name="about_tabs" className="tab" aria-label="Success" />
-        <div className="tab-content bg-base-100 border border-base-300 p-6 space-y-4 text-[#606060]">
-          <h3 className="text-xl font-semibold">Our Success</h3>
+        <input type="radio" name="about_tabs" className="tab text-black" aria-label="Success" />
+        <div className="tab-content bg-white border border-base-300 p-6 space-y-4 ">
+          <h3 className="text-xl font-semibold text-black">Our Success</h3>
           <p>
             Success for us isn’t measured in trucks or tracking numbers — it’s measured in smiles, repeat customers, and stories of packages arriving just in time.
           </p>
@@ -67,9 +68,9 @@ export default function About() {
         </div>
 
         {/* Team & Others Tab */}
-        <input type="radio" name="about_tabs" className="tab" aria-label="Team & Others" />
-        <div className="tab-content bg-base-100 border border-base-300 p-6 space-y-4 text-[#606060]">
-          <h3 className="text-xl font-semibold">Meet the Team</h3>
+        <input type="radio" name="about_tabs" className="tab text-black" aria-label="Team & Others" />
+        <div className="tab-content bg-white border border-base-300 p-6 space-y-4 ">
+          <h3 className="text-xl font-semibold text-black">Meet the Team</h3>
           <p>Behind every successful delivery is a team of passionate individuals. Our crew includes:</p>
           <ul className="list-disc list-inside space-y-1">
             <li>Logistics strategists who plan efficient routes and reduce delays</li>

@@ -61,7 +61,7 @@ export default function Navbar() {
               `${isActive ? activeClass : "hover:text-black"}`
             }
           >
-            Pricing
+            Send Percel
           </NavLink>
           <NavLink
             to="/rider"

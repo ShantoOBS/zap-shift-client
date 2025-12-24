@@ -63,7 +63,7 @@ export default function Coverage() {
 
             <div className=' w-full h-[200px]  md:h-[400px] '>
                 <MapContainer center={position}
-                    zoom={8}
+                    zoom={7}
                     scrollWheelZoom={false}
                     className='w-full h-[200px] md:h-[400px]'
                     ref={mapRef}

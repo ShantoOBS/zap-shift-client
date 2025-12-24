@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 
 export default function AuthLayout() {
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col md:flex-row text-black">
 
       {/* LEFT SIDE (Form Section) */}
       <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col">
