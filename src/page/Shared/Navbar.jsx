@@ -56,7 +56,7 @@ export default function Navbar() {
             About Us
           </NavLink>
           <NavLink
-            to="/pricing"
+            to="/send-parcel"
             className={({ isActive }) =>
               `${isActive ? activeClass : "hover:text-black"}`
             }
@@ -71,6 +71,19 @@ export default function Navbar() {
           >
             Be a Rider
           </NavLink>
+
+          {
+             user && <>
+                  <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `${isActive ? activeClass : "hover:text-black"}`
+            }
+          >
+            My Parcel
+          </NavLink>
+              </>
+          }
         </div>
 
         {/* RIGHT BUTTONS (DESKTOP) */}

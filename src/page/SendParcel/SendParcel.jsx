@@ -55,6 +55,7 @@ const SendParcel = () => {
         }
 
         console.log('cost', cost);
+        data.cost=cost;
 
         Swal.fire({
             title: "Agree with the Cost?",
@@ -84,9 +85,9 @@ const SendParcel = () => {
     }
 
     return (
-        <div>
+        <div className='max-w-5xl mx-auto mb-5'>
             <h2 className="text-5xl font-bold">Send A Parcel</h2>
-            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black'>
+            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-5 text-black'>
                 {/* parcel type*/}
                 <div>
                     <label className="label mr-4">
@@ -131,7 +132,7 @@ const SendParcel = () => {
                             className="input w-full" placeholder="Sender Email" />
 
                         {/* sender region */}
-                        <fieldset className="fieldset">
+                        <fieldset className="fieldset ">
                             <legend className="fieldset-legend">Sender Regions</legend>
                             <select {...register('senderRegion')} defaultValue="Pick a region" className="select">
                                 <option disabled={true}>Pick a region</option>
