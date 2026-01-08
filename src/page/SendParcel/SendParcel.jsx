@@ -54,7 +54,7 @@ const SendParcel = () => {
             }
         }
 
-        console.log('cost', cost);
+      
         data.cost=cost;
 
         Swal.fire({
@@ -71,14 +71,14 @@ const SendParcel = () => {
                 // save the parcel info to the database
                 axiosSecure.post('/parcels', data)
                     .then(res => {
-                        console.log('after saving parcel', res.data);
+                          Swal.fire({
+                    title: "Success",
+                    text: "Your file has been added.",
+                    icon: "success"
+                });
                     })
 
-                // Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success"
-                // });
+              
             }
         });
 

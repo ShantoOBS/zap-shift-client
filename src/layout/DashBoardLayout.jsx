@@ -37,7 +37,7 @@ export default function DashBoardLayout() {
         </li>
 
            <li>
-          <Link to="/dashboard/my-parcels" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
+          <Link to="/dashboard/my-parcels" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
             {/* Settings icon */}
            <CiDeliveryTruck />
             <span className="is-drawer-close:hidden">My Parcels</span>
