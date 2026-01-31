@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router';
 
 const SendParcel = () => {
     const {
@@ -14,6 +15,7 @@ const SendParcel = () => {
     } = useForm();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const serviceCenters = useLoaderData();
     const regionsDuplicate = serviceCenters.map(c => c.region);
@@ -54,8 +56,8 @@ const SendParcel = () => {
             }
         }
 
-      
-        data.cost=cost;
+
+        data.cost = cost;
 
         Swal.fire({
             title: "Agree with the Cost?",
@@ -71,14 +73,19 @@ const SendParcel = () => {
                 // save the parcel info to the database
                 axiosSecure.post('/parcels', data)
                     .then(res => {
-                          Swal.fire({
-                    title: "Success",
-                    text: "Your file has been added.",
-                    icon: "success"
-                });
+
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/my-parcels')
+                            Swal.fire({
+                                title: "Success",
+                                text: "Confirm and Continue with Payment",
+                                icon: "success"
+                            });
+                        }
+
                     })
 
-              
+
             }
         });
 
@@ -121,9 +128,9 @@ const SendParcel = () => {
                         <h4 className="text-2xl font-semibold">Sender Details</h4>
                         {/* sender name */}
                         <label className="label">Sender Name</label>
-                        <input type="text" {...register('senderName')} 
-                        defaultValue={user?.displayName}
-                        className="input w-full" placeholder="Sender Name" />
+                        <input type="text" {...register('senderName')}
+                            defaultValue={user?.displayName}
+                            className="input w-full" placeholder="Sender Name" />
 
                         {/* sender email */}
                         <label className="label">Sender Email</label>

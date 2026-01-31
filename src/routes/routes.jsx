@@ -14,6 +14,7 @@ import Rider from "../page/Rider/Rider";
 import SendParcel from "../page/SendParcel/SendParcel";
 import DashBoardLayout from "../layout/DashBoardLayout";
 import MyParcel from "../page/Dashboard/MyParcel";
+import PaymentCancel from "../page/Dashboard/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
          {
            path:'my-parcels',
            element: <MyParcel></MyParcel>
+         },
+         {
+          path:'payment-cancel',
+          element: <PaymentCancel></PaymentCancel>
          }
        
      ]

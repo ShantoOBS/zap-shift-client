@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAuth from '../../Hooks/useAuth'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { FaMagnifyingGlassPlus } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import Swal from 'sweetalert2';
+import { useSearchParams } from "react-router";
 
 
 
@@ -13,6 +14,20 @@ export default function MyParcel() {
 
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
+        const [searchParams]=useSearchParams();
+
+        const sessionId=searchParams.get("session_id");
+
+        useEffect(()=>{
+
+          if(sessionId){
+            axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
+            .then(res=>console.log(res.data))
+          }
+
+        },[sessionId,axiosSecure])
+
 
   const { data: parecl = [], refetch } = useQuery({
     queryKey: ['myParcels', user?.email],
@@ -60,6 +75,8 @@ export default function MyParcel() {
       
         //console.log(parcel);
 
+  
+
         const paymentInfo={
           cost:parcel.cost,
           parcelId:parcel._id,
@@ -70,6 +87,9 @@ export default function MyParcel() {
         const res=await axiosSecure.post('/create-checkout-session',paymentInfo)
 
         console.log(res.data);
+        // eslint-disable-next-line react-hooks/immutability
+         window.location.href=res.data.url;
+       
   }
 
   return (
