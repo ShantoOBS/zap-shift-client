@@ -1,7 +1,8 @@
-import React from 'react'
-import MyParcel from '../page/Dashboard/MyParcel'
+
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Link, Outlet } from 'react-router'
+import { MdCreditCard } from "react-icons/md";
+
 
 export default function DashBoardLayout() {
   return (
@@ -41,6 +42,14 @@ export default function DashBoardLayout() {
             {/* Settings icon */}
            <CiDeliveryTruck />
             <span className="is-drawer-close:hidden">My Parcels</span>
+          </Link>
+        </li>
+           <li>
+          <Link to="/dashboard/payment-history" 
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+            {/* Settings icon */}
+           <MdCreditCard />
+            <span className="is-drawer-close:hidden">Payment History</span>
           </Link>
         </li>
 
