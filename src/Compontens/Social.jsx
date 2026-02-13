@@ -2,25 +2,27 @@ import React from 'react'
 import useAuth from '../Hooks/useAuth'
 import { useLocation, useNavigate } from 'react-router';
 
-export default function Social() {
+export default function Social({ className = "" }) {
+    const { signInWithGoogle } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const {signInWithGoogle}=useAuth();
-    const navigate=useNavigate();
-    const location=useLocation();
-
-    const handleSubmit=()=>{
-         signInWithGoogle()
-         .then(res=>navigate(location.state || '/'))
-         .catch(error=>{console.log(error)});
-    }
+    const handleSubmit = () => {
+        signInWithGoogle()
+            .then(() => navigate(location?.state?.from?.pathname || "/", { replace: true }))
+            .catch((err) => console.error(err));
+    };
 
     return (
-        <div>
+        <div className={className}>
 
-            <p className="text-center my-2">or</p>
+            <p className="text-center text-sm text-gray-500">or continue with</p>
 
-            {/* Google Login Button */}
-            <button onClick={handleSubmit} className="btn bg-white text-black border-[#e5e5e5] w-full ">
+            <button
+                type="button"
+                onClick={handleSubmit}
+                className="mt-3 flex w-full items-center cursor-pointer justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            >
                 <svg
                     aria-label="Google logo"
                     width="16"

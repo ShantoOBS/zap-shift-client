@@ -1,203 +1,222 @@
-import { useState } from "react";
-import { NavLink,  } from "react-router"; // NavLink for active detection
-import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, Link } from "react-router";
+import { motion as Motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Logo from "../../Compontens/Logo";
 import CircleButton from "../../Compontens/CircleButton";
-import useAuth from '../../Hooks/useAuth'
+import useAuth from "../../Hooks/useAuth";
+
+const navItems = [
+  { to: "/services", label: "Services" },
+  { to: "/coverage", label: "Coverage" },
+  { to: "/about", label: "About Us" },
+  { to: "/send-parcel", label: "Send Parcel" },
+  { to: "/rider", label: "Be a Rider" },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(typeof window !== "undefined" ? window.scrollY : 0);
+  const ticking = useRef(false);
 
-  const {user,logOut}=useAuth();
+  const { user, logOut } = useAuth();
 
-  const hendleLogOut=()=>{
-     
-       logOut()
-       .then(()=>{
-    
-       })
-       .catch(()=>{})
-  }
-  // Tailwind classes for active link
-  const activeClass =
-    "bg-[#caeb66] text-black rounded-full px-3 py-1";
+  const handleLogOut = () => {
+    logOut?.()
+      .then(() => {})
+      .catch(() => {});
+  };
+
+  const closeMenu = () => setOpen(false);
+
+  // Scroll handler to hide on scroll down and show on scroll up
+  useEffect(() => {
+    function handleScroll() {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY > lastScrollY.current && currentScrollY > 32) {
+            // Scrolling down
+            setShowNavbar(false);
+          } else {
+            // Scrolling up or at top
+            setShowNavbar(true);
+          }
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="w-full bg-white rounded-2xl mb-5 shadow-sm relative">
-      <div className="px-6 md:px-8 py-3 flex items-center justify-between">
-        {/* LEFT LOGO */}
-        <Logo color={false} />
+    <Motion.nav
+      initial={false}
+      animate={{
+        y: showNavbar ? 0 : "-100%",
+        opacity: showNavbar ? 1 : 0,
+        pointerEvents: showNavbar ? "auto" : "none",
+        transition: { type: "tween", duration: 0.24 }
+      }}
+      className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md shadow-sm"
+      style={{
+        transitionProperty: "transform, opacity"
+      }}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-4">
+        {/* Logo */}
+        <Link to="/" className="flex shrink-0 items-center" onClick={closeMenu}>
+          <Logo color={false} />
+        </Link>
 
-        {/* CENTER LINKS (DESKTOP) */}
-        <div className="hidden md:flex text-[#606060] text-sm gap-6">
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/coverage"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            Coverage
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            About Us
-          </NavLink>
-          <NavLink
-            to="/send-parcel"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            Send Percel
-          </NavLink>
-          <NavLink
-            to="/rider"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            Be a Rider
-          </NavLink>
-
-          {
-             user && <>
-                  <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `${isActive ? activeClass : "hover:text-black"}`
-            }
-          >
-            My Parcel
-          </NavLink>
-              </>
-          }
+        {/* Desktop nav links */}
+        <div className="hidden md:flex md:items-center md:gap-1 lg:gap-2">
+          {navItems.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                `relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                  isActive
+                    ? "bg-[#caeb66] text-black"
+                    : "text-[#606060] hover:bg-gray-100 hover:text-black"
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+          {user && (
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                `relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                  isActive
+                    ? "bg-[#caeb66] text-black"
+                    : "text-[#606060] hover:bg-gray-100 hover:text-black"
+                }`
+              }
+            >
+              My Parcel
+            </NavLink>
+          )}
         </div>
 
-        {/* RIGHT BUTTONS (DESKTOP) */}
-        <div className="hidden md:flex gap-3 items-center">
-         
-          {
-             user ?  
-                <button onClick={hendleLogOut} className="px-4 py-2 border border-gray-300 rounded-md
-                cursor-pointer bg-white hover:bg-gray-100 text-[#606060]">
-             Sign Out
+        {/* Desktop actions */}
+        <div className="hidden md:flex md:items-center md:gap-3">
+          {user ? (
+            <button
+              type="button"
+              onClick={handleLogOut}
+              className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
+            >
+              Sign Out
             </button>
-
-         :  <Link to='/login'>
-            
-                <button className="px-4 py-2 border
-                cursor-pointer border-gray-300 rounded-md bg-white hover:bg-gray-100 text-[#606060]">
-            Sign In
-          </button>
-
-         </Link>
-          }
-
-          <div className="flex items-center gap-2">
-            <button className="px-4 py-2 rounded-md bg-[#caeb66] hover:bg-[#abc758] text-black font-bold">
+          ) : (
+            <Link to="/login">
+              <button
+                type="button"
+                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
+              >
+                Sign In
+              </button>
+            </Link>
+          )}
+          <Link to="/rider">
+            <button
+              type="button"
+              className="rounded-full bg-[#caeb66] px-4 py-2 text-sm font-semibold text-black shadow-sm transition-all duration-200 hover:bg-[#b8d95a] hover:shadow"
+            >
               Be a Rider
             </button>
-            <CircleButton />
-          </div>
+          </Link>
+          <CircleButton />
         </div>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* Mobile menu button */}
         <button
-          className="md:hidden text-gray-800 text-3xl"
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100 md:hidden"
           onClick={() => setOpen(!open)}
         >
-          {open ? "×" : "☰"}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* MOBILE MENU WITH ANIMATION */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="md:hidden absolute top-20 left-0 w-full mx-5 bg-white shadow-lg rounded-b-2xl px-6 pb-4 space-y-3 z-50"
-          >
-            <div className="space-y-2">
-              <NavLink
-                to="/services"
-                className={({ isActive }) =>
-                  `block py-2 border-b px-3 rounded-full ${
-                    isActive ? activeClass : ""
-                  }`
-                }
-              >
-                Services
-              </NavLink>
-              <NavLink
-                to="/coverage"
-                className={({ isActive }) =>
-                  `block py-2 border-b px-3 rounded-full ${
-                    isActive ? activeClass : ""
-                  }`
-                }
-              >
-                Coverage
-              </NavLink>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  `block py-2 border-b px-3 rounded-full ${
-                    isActive ? activeClass : ""
-                  }`
-                }
-              >
-                About Us
-              </NavLink>
-              <NavLink
-                to="/pricing"
-                className={({ isActive }) =>
-                  `block py-2 border-b px-3 rounded-full ${
-                    isActive ? activeClass : ""
-                  }`
-                }
-              >
-                Pricing
-              </NavLink>
-              <NavLink
-                to="/rider"
-                className={({ isActive }) =>
-                  `block py-2 border-b px-3 rounded-full ${
-                    isActive ? activeClass : ""
-                  }`
-                }
-              >
-                Be a Rider
-              </NavLink>
-            </div>
-
-            <div className="pt-2 flex flex-col gap-3">
-              <button className="w-full py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-100 text-[#606060]">
-                Sign In
-              </button>
-
-              <button className="w-full py-2 rounded-md bg-[#caeb66] hover:bg-[#abc758] text-black">
-                Be a Rider
-              </button>
-            </div>
-          </motion.div>
+          <>
+            <Motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+              onClick={closeMenu}
+              aria-hidden="true"
+            />
+            <Motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
+              className="fixed left-4 right-4 top-20 z-50 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl md:hidden"
+            >
+              <div className="max-h-[calc(100vh-6rem)] overflow-y-auto py-4">
+                {[...navItems, ...(user ? [{ to: "/dashboard", label: "My Parcel" }] : [])].map(
+                  ({ to, label }) => (
+                    <NavLink
+                      key={to}
+                      to={to}
+                      onClick={closeMenu}
+                      className={({ isActive }) =>
+                        `block px-5 py-3 text-sm font-medium transition-colors ${
+                          isActive
+                            ? "bg-[#caeb66]/20 text-[#056873]"
+                            : "text-[#606060] hover:bg-gray-50 hover:text-black"
+                        }`
+                      }
+                    >
+                      {label}
+                    </NavLink>
+                  )
+                )}
+                <div className="my-2 border-t border-gray-100 px-2 pt-4">
+                  {user ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleLogOut();
+                        closeMenu();
+                      }}
+                      className="w-full rounded-xl border border-gray-200 py-3 text-sm font-medium text-[#606060] hover:bg-gray-50"
+                    >
+                      Sign Out
+                    </button>
+                  ) : (
+                    <Link to="/login" onClick={closeMenu}>
+                      <span className="block w-full rounded-xl border border-gray-200 py-3 text-center text-sm font-medium text-[#606060] hover:bg-gray-50">
+                        Sign In
+                      </span>
+                    </Link>
+                  )}
+                  <Link to="/rider" onClick={closeMenu} className="mt-2 block">
+                    <span className="block w-full rounded-xl bg-[#caeb66] py-3 text-center text-sm font-semibold text-black hover:bg-[#b8d95a]">
+                      Be a Rider
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </Motion.div>
+          </>
         )}
       </AnimatePresence>
-    </nav>
+    </Motion.nav>
   );
 }

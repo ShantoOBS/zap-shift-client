@@ -1,18 +1,50 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
-
-body {
-
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  
+:root {
+  /* Brand */
+  --color-primary: #056873;
+  --color-primary-hover: #04515a;
+  --color-accent: #caeb66;
+  --color-accent-hover: #b8d95a;
+  /* Surfaces */
+  --color-bg: #eaeced;
+  --color-card: #ffffff;
+  --color-surface: #f4f4f5;
+  /* Text */
+  --color-text: #171717;
+  --color-text-muted: #606060;
+  --color-text-subtle: #71717a;
+  /* Borders & shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
 }
 
 html {
-  background-color: #eaeced !important;
- 
+  background-color: var(--color-bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Consistent selection */
+::selection {
+  background-color: rgba(5, 104, 115, 0.2);
 }

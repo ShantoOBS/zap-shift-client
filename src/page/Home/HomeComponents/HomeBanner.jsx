@@ -1,30 +1,25 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-
-import small from '/assets/tiny-deliveryman.png'
-import CircleButton from '../../../Compontens/CircleButton';
-
-
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router";
+import small from "/assets/tiny-deliveryman.png";
+import CircleButton from "../../../Compontens/CircleButton";
 
 const items = [
   {
     id: 1,
-    url: '/assets/delivery-man-1.png',
-    title: 'We Make Sure Your Parcel Arrives On Time – No Fuss.',
- 
+    url: "/assets/delivery-man-1.png",
+    title: "We Make Sure Your Parcel Arrives On Time – No Fuss.",
   },
   {
     id: 2,
-    url: '/assets/delivery_man.png',
-    title: 'Fastest Delivery & Easy Pickup',
-
+    url: "/assets/delivery_man.png",
+    title: "Fastest Delivery & Easy Pickup",
   },
   {
     id: 3,
-    url: '/assets/delivery-man-2.png',
-    title: 'Delivery in 30 Minutes at your doorstep',
-    
+    url: "/assets/delivery-man-2.png",
+    title: "Delivery in 30 Minutes at your doorstep",
   },
 ];
 
@@ -32,75 +27,81 @@ export default function HomeBanner() {
   const [index, setIndex] = useState(0);
   const timer = useRef(null);
 
-  // Auto slide every 2 seconds
   useEffect(() => {
     timer.current = setTimeout(() => {
       setIndex((prev) => (prev + 1) % items.length);
-    }, 5000); // <<< HOLD EACH SLIDE FOR 2 SECONDS
-
+    }, 5000);
     return () => clearTimeout(timer.current);
   }, [index]);
 
   return (
-    <div className="">
-      <div className="relative overflow-hidden rounded-2xl bg-white">
-
-        {/* Horizontal Sliding Container */}
-
-        <motion.div
-          className="flex w-full"
-          animate={{ x: `-${index * 100}%` }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }} // smooth move
-        >
-          {items.map((item) => (
-            <div key={item.id} className="w-full md:max-h-120 flex-shrink-0  ">
-
-                <div className='flex flex-col md:flex-row items-center gap-5 justify-between p-8 md:p-20'>
-
-                    <div className='space-y-4'>
-
-                    <img src={small} alt="" quality={100} className='max-w-45 max-h-45'/>
-
-                       <p className='text-black font-bold text-4xl md:text-5xl'> {item.title}</p>
-
-                       <p className='text-[#606060] text-sm '> Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
-
-                           <div className="hidden md:flex gap-3 items-center">
-                               <div className="flex">
-                                   <button className="btn rounded-full bg-[#caeb66] hover:bg-[#abc758] text-black">Track Your Parcel</button>
-                                    <CircleButton></CircleButton>
-                               </div>
-                                 <button className="btn border-gray-400 bg-white hover:bg-gray-200 text-[#606060]">Be a rider</button>
-                            
-                               </div>
-
-                    </div>
-
-                
-                    
-                    <div className='md:w-[55%]'>
-                          <img src={item.url} alt=""  />
-                    </div>
-                      
+    <div className="relative overflow-hidden rounded-2xl bg-white my-5 shadow-[0_1px_3px_0_rgb(0_0_0_/_.06),0_1px_2px_-1px_rgb(0_0_0_/_.06)]">
+      <motion.div
+        className="flex w-full"
+        animate={{ x: `-${index * 100}%` }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      >
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="w-full flex-shrink-0 md:max-h-[28rem] "
+          >
+            <div className="flex flex-col items-center gap-6 p-8 md:flex-row md:justify-between md:gap-10 md:p-12 lg:p-16">
+              <div className="space-y-4 text-center md:text-left">
+                <img
+                  src={small}
+                  alt=""
+                  className="mx-auto max-h-28 max-w-28 md:mx-0 md:max-h-36 md:max-w-36"
+                />
+                <h2 className="text-2xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+                  {item.title}
+                </h2>
+                <p className="text-sm text-[#606060]">
+                  Enjoy fast, reliable parcel delivery with real-time tracking
+                  and zero hassle. From personal packages to business shipments
+                  — we deliver on time, every time.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                  <Link to="/send-parcel">
+                    <button
+                      type="button"
+                      className="rounded-full bg-[#caeb66] px-5 py-2.5 text-sm font-semibold text-black shadow-sm transition-colors hover:bg-[#b8d95a]"
+                    >
+                      Track Your Parcel
+                    </button>
+                  </Link>
+                  <CircleButton />
+                  <Link to="/rider">
+                    <button
+                      type="button"
+                      className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-[#606060] transition-colors hover:bg-gray-50"
+                    >
+                      Be a rider
+                    </button>
+                  </Link>
                 </div>
-
-               
-            
+              </div>
+              <div className="relative w-full md:w-[55%]">
+                <img
+                  src={item.url}
+                  alt=""
+                  className="w-full object-contain"
+                />
+              </div>
             </div>
-          ))}
-        </motion.div>
+          </div>
+        ))}
+      </motion.div>
 
-        {/* Dots */}
-        <div className="absolute bottom-10 left-1/2 md:left-30 -translate-x-1/2 flex gap-2">
-          {items.map((_, i) => (
-            <span
-              key={i}
-              className={`h-1 w-4 rounded-2xl transition-all ${
-                i === index ? 'w-8 bg-[#056873]' : 'w-2 bg-[#c3dfe2]'
-              }`}
-            />
-          ))}
-        </div>
+      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
+        {items.map((_, i) => (
+          <span
+            key={i}
+            className={`h-1 rounded-full transition-all duration-300 ${
+              i === index ? "w-8 bg-[#056873]" : "w-2 bg-[#c3dfe2]"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );

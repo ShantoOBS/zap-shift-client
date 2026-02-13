@@ -28,10 +28,10 @@ export default function Coverage() {
 
 
     return (
-        <div className='bg-white rounded-2xl p-5 md:p-10 my-10 min-h-[500px] '>
+        <div className='bg-white rounded-2xl  p-5 my-5 min-h-[500px] '>
             <p className='text-2xl sm:text-3xl md:text-4xl font-bold'>We are available in 64 districts</p>
 
-            <div className='my-5 md:my-10'>
+            <div className='my-5 '>
 
                 <form onSubmit={hendleSubmit}>
                     <div className="join">

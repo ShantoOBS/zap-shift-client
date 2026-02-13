@@ -9,9 +9,9 @@ import img6 from '/assets/brands/start_people.png'
 
 export default function Sponser() {
   return (
-    <div className="overflow-hidden whitespace-nowrap w-full my-10 md:my-20 ">
+    <div className="w-full overflow-hidden py-5">
 
-      <p className="text-center text-lg md:text-2xl font-bold my-4">We've helped thousands of sales teams</p>
+      <p className="mb-6 text-center text-lg font-bold text-gray-900 md:text-2xl">We've helped thousands of sales teams</p>
       <motion.div
         animate={{ x: ["100%", "-100%"] }}
         transition={{
@@ -21,24 +21,24 @@ export default function Sponser() {
         }}
         className="flex gap-10"
       >
-         <img src={img1} alt="" />
-         <img src={img2} alt="" />
-         <img src={img3} alt="" />
-         <img src={img4} alt="" />
-         <img src={img5} alt="" />
-         <img src={img6} alt="" />
-         <img src={img1} alt="" />
-         <img src={img2} alt="" />
-         <img src={img3} alt="" />
-         <img src={img4} alt="" />
-         <img src={img5} alt="" />
-         <img src={img6} alt="" />
-         <img src={img1} alt="" />
-         <img src={img2} alt="" />
-         <img src={img3} alt="" />
-         <img src={img4} alt="" />
-         <img src={img5} alt="" />
-         <img src={img6} alt="" />
+         <img src={img1} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img2} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img3} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img4} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img5} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img6} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img1} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img2} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img3} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img4} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img5} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img6} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img1} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img2} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img3} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img4} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img5} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
+         <img src={img6} alt="" className="h-8 object-contain opacity-80 grayscale md:h-10" />
       </motion.div>
     </div>
   );

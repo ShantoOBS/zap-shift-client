@@ -48,7 +48,7 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="w-full md:max-w-md mx-auto ">
       <p className="text-2xl md:text-3xl font-bold">Create an Account</p>
       <p className="text-xs md:text-sm mb-3">Register with ZapShift</p>
 
@@ -56,10 +56,10 @@ export default function Register() {
         <fieldset className="fieldset w-full">
 
           {/* Full Name */}
-          <label className="label">Full Name</label>
+          <label className="label ">Full Name</label>
           <input
             type="text"
-            className="input"
+            className="input w-full"
             placeholder="Your Name"
             {...register("name", { required: "Full Name is required" })}
           />
@@ -73,7 +73,7 @@ export default function Register() {
           <label className="label">Email</label>
           <input
             type="email"
-            className="input"
+            className="input w-full"
             placeholder="Email"
             {...register("email", { required: "Email is required" })}
           />
@@ -84,7 +84,7 @@ export default function Register() {
           <div className="relative w-full">
             <input
               type={showPassword ? "text" : "password"}
-              className="input pr-10"
+              className="input pr-10 w-full"
               placeholder="Password"
               {...register("password", {
                 required: "Password is required",
@@ -109,7 +109,7 @@ export default function Register() {
       </form>
 
       {/* LOGIN LINK */}
-      <p className="text-[#71717a] text-xs md:text-sm mt-3">
+      <p className="text-[#71717a] text-xs md:text-sm my-3">
         Already have an account?{" "}
         <Link state={location.state}
         to="/login" className="text-black font-semibold link link-hover">

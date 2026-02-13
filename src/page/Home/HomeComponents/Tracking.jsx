@@ -1,70 +1,50 @@
-import React from 'react'
-import img1 from '/assets/live-tracking.png'
-import img2 from '/assets/safe-delivery.png'
+import React from "react";
+import img1 from "/assets/live-tracking.png";
+import img2 from "/assets/safe-delivery.png";
+
+const cards = [
+  {
+    img: img1,
+    title: "Live Parcel Tracking",
+    description:
+      "Stay updated in real-time with our live parcel tracking feature. From pick-up to delivery, monitor your shipment's journey and get instant status updates for complete peace of mind.",
+  },
+  {
+    img: img2,
+    title: "100% Safe Delivery",
+    description:
+      "We ensure your parcels are handled with the utmost care and delivered securely to their destination. Our reliable process guarantees safe and damage-free delivery every time.",
+  },
+  {
+    img: img2,
+    title: "24/7 Call Center Support",
+    description:
+      "Our dedicated support team is available around the clock to assist you with any questions, updates, or delivery concerns—anytime you need us.",
+  },
+];
 
 export default function Tracking() {
   return (
-    <div className='max-w-5xl mx-auto space-y-5 md:my-20 my-10'>
-         
-
-
-         <div className='bg-white rounded-2xl flex  justify-between gap-5 md:gap-10 p-5 items-center'>
-            <div>
-                <img src={img1} alt="" />
-            </div>
-
-            <div className='w-[1px] h-20 md:h-30 bg-black border-dotted' >
-
-            </div>
-
-        <div className='space-y-3'>
-             <p className='font-bold text-sm md:text-base'>Live Parcel Tracking</p>
-             <p className='text-[10px] md:text-xs text-[#606060]'>Stay updated in real-time with our live parcel tracking feature. From pick-up to delivery, monitor your shipment's journey
-                 and get instant status updates for complete peace of mind.</p>
-         </div>
-
-         </div>
-
-         <div className='bg-white rounded-2xl flex  justify-between gap-5 md:gap-10 p-5 items-center'>
-            <div>
-                <img src={img2} alt="" />
-            </div>
-
-            <div className='w-[1px] h-20 md:h-30 bg-black border-dotted' >
-
-            </div>
-
-        <div className='space-y-3'>
-             <p className='font-bold text-sm md:text-base'>100% Safe Delivery</p>
-             <p className='text-[10px] md:text-xs text-[#606060]'>We ensure your parcels are handled with the utmost care and delivered securely
-                 to their destination. Our reliable process guarantees safe and damage-free delivery every time.</p>
-         </div>
-
-         </div>
-        
-         <div className='bg-white rounded-2xl flex  justify-between gap-5 md:gap-10 p-5 items-center'>
-            <div>
-                <img src={img2} alt="" />
-            </div>
-
-            <div className='w-[1px] h-20 md:h-30 bg-black border-dotted' >
-
-            </div>
-
-        <div className='space-y-3'>
-             <p className='font-bold text-sm md:text-base'>24/7 Call Center Support</p>
-             <p className='text-[10px] md:text-xs text-[#606060]'>Our dedicated support team is available around the clock to assist
-                 you with any questions, updates, or delivery concerns—anytime you need us.</p>
-         </div>
-
-         </div>
-
-
-    
-
-      
-
-      
-    </div>
-  )
+    <section className="mx-auto max-w-4xl space-y-4 md:space-y-6">
+      {cards.map((card, i) => (
+        <div
+          key={i}
+          className="flex flex-col gap-4 rounded-2xl bg-white p-5 shadow-[0_1px_3px_0_rgb(0_0_0_/_.06)] md:flex-row md:items-center md:gap-8 md:p-6"
+        >
+          <div className="shrink-0">
+            <img src={card.img} alt="" className="h-16 w-auto md:h-20" />
+          </div>
+          <div className="hidden h-16 w-px shrink-0 bg-gray-200 md:block" />
+          <div className="min-w-0 flex-1 space-y-1">
+            <h3 className="font-bold text-gray-900 md:text-base">
+              {card.title}
+            </h3>
+            <p className="text-xs text-[#606060] md:text-sm">
+              {card.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </section>
+  );
 }

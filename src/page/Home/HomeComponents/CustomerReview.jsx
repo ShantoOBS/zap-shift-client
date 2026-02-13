@@ -5,105 +5,55 @@ import customer from "/assets/customer-top.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const reviews = [
-  {
-    quote:
-      "A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine.",
-    name: "Awlad Hossain",
-    role: "Senior Product Designer",
-  },
-  {
-    quote:
-      "This product transformed my daily workflow and reduced pain significantly!",
-    name: "Nasir Uddin",
-    role: "CEO",
-  },
-  {
-    quote:
-      "Super helpful for posture correction during long sitting hours.",
-    name: "Rasel Ahamed",
-    role: "CTO",
-  },
-  {
-    quote:
-      "Helps maintain proper alignment throughout the day. Works amazingly!",
-    name: "Awlad Hossin",
-    role: "Senior Product Designer",
-  },
-  {
-    quote:
-      "Amazing product for long desk work. Great comfort.",
-    name: "Nasir Uddin",
-    role: "CEO",
-  },
-  {
-    quote:
-      "Highly recommended for office workers and students.",
-    name: "Rasel Ahamed",
-    role: "CTO",
-  },
+  { quote: "A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine.", name: "Awlad Hossain", role: "Senior Product Designer" },
+  { quote: "This product transformed my daily workflow and reduced pain significantly!", name: "Nasir Uddin", role: "CEO" },
+  { quote: "Super helpful for posture correction during long sitting hours.", name: "Rasel Ahamed", role: "CTO" },
+  { quote: "Helps maintain proper alignment throughout the day. Works amazingly!", name: "Awlad Hossin", role: "Senior Product Designer" },
+  { quote: "Amazing product for long desk work. Great comfort.", name: "Nasir Uddin", role: "CEO" },
+  { quote: "Highly recommended for office workers and students.", name: "Rasel Ahamed", role: "CTO" },
 ];
 
 export default function CustomerReview() {
   const [index, setIndex] = useState(0);
-
   const next = () => setIndex((prev) => (prev + 1) % reviews.length);
   const prev = () => setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-
   const getIndex = (offset) => (index + offset + reviews.length) % reviews.length;
-
-  const getSlide = (position) => {
-    return {
-      scale: position === 1 ? 1 : 0.85,
-      opacity: position === 1 ? 1 : 0.5,
-      filter: position === 1 ? "blur(0px)" : "blur(2px)",
-      y: position === 1 ? 0 : 25,
-    };
-  };
+  const getSlide = (position) => ({
+    scale: position === 1 ? 1 : 0.9,
+    opacity: position === 1 ? 1 : 0.6,
+    y: position === 1 ? 0 : 20,
+  });
 
   return (
-    <div className="py-10 md:py-15 ">
-      {/* Top icon */}
-      <div className="flex justify-center mb-5">
-        <img src={customer} alt="" className="" />
+    <section className="">
+      <div className="flex justify-center">
+        <img src={customer} alt="" className="h-12 w-auto md:h-14" />
       </div>
-
-      {/* Title */}
-      <p className="text-xl md:text-3xl font-bold text-center">
+      <h2 className="mt-4 text-center text-xl font-bold text-gray-900 md:text-3xl">
         What our customers are saying
+      </h2>
+      <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-[#606060] md:mb-10">
+        Enhance posture, mobility, and well-being effortlessly. Achieve proper
+        alignment, reduce pain, and strengthen your body with ease!
       </p>
 
-      <p className="text-xs md:text-sm text-[#606060] mt-2 mb-10 leading-relaxed text-center">
-       Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce <span className="hidden md:inline"><br /></span>
-       pain, and strengthen your body with ease!
-      </p>
-
-      {/* 3 Cards */}
-      <div className="flex justify-center items-center gap-3 md:gap-6 overflow-hidden">
+      <div className="flex items-center justify-center gap-3 overflow-hidden py-6 md:gap-6">
         {[getIndex(-1), getIndex(0), getIndex(1)].map((itemIndex, pos) => (
           <motion.div
             key={itemIndex}
-            className="
-              bg-white rounded-2xl 
-              shadow-md 
-              p-4 md:p-8 
-              w-[45%] 
-                 min-w-[250px]
-              min-h-[200px]
-              mb-2
-            "
+            className="min-h-[200px] min-w-[250px] flex-1 max-w-sm rounded-2xl bg-white p-6 shadow-[0_1px_3px_0_rgb(0_0_0_/_.06)] md:p-8"
             initial={{ opacity: 0 }}
             animate={getSlide(pos)}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <p className="text-3xl text-[#4db6ac] mb-3">❝</p>
-            <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+            <p className="text-3xl text-[#056873]">❝</p>
+            <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">
               {reviews[itemIndex].quote}
             </p>
-
             <div className="mt-6 flex items-center gap-3">
-              <div className="w-10 h-10 bg-[#053c47] rounded-full" />
+              <div className="h-10 w-10 shrink-0 rounded-full bg-[#056873]" />
               <div>
-                <p className="font-bold text-sm">{reviews[itemIndex].name}</p>
+                <p className="font-semibold text-gray-900">{reviews[itemIndex].name}</p>
                 <p className="text-xs text-gray-500">{reviews[itemIndex].role}</p>
               </div>
             </div>
@@ -111,33 +61,34 @@ export default function CustomerReview() {
         ))}
       </div>
 
-      {/* Controls */}
-      <div className="flex justify-center items-center gap-5 mt-8">
+      <div className="mt-8 flex items-center justify-center gap-5">
         <button
+          type="button"
           onClick={prev}
-          className="p-2 rounded-full border border-gray-300 hover:bg-gray-100"
+          className="rounded-full border border-gray-200 p-2.5 text-gray-600 transition-colors hover:bg-gray-50"
+          aria-label="Previous review"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={20} />
         </button>
-
         <div className="flex gap-2">
           {reviews.map((_, i) => (
-            <div
+            <span
               key={i}
-              className={`w-2 h-2 rounded-full ${
-                i === index ? "bg-[#053c47]" : "bg-gray-300"
+              className={`block h-2 w-2 rounded-full transition-colors ${
+                i === index ? "bg-[#056873]" : "bg-gray-300"
               }`}
             />
           ))}
         </div>
-
         <button
+          type="button"
           onClick={next}
-          className="p-2 rounded-full bg-[#c0ff4d] hover:bg-[#aee73f]"
+          className="rounded-full bg-[#caeb66] p-2.5 text-black transition-colors hover:bg-[#b8d95a]"
+          aria-label="Next review"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={20} />
         </button>
       </div>
-    </div>
+    </section>
   );
 }

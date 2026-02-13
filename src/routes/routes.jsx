@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import RootLayout from "../layout/RootLayout";
 import Home from "../page/Home/Home";
 import Coverage from "../page/Coverage/Coverage";
@@ -78,7 +78,10 @@ export const router = createBrowserRouter([
      path:'dashboard',
      element:<PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
      children:[
-
+         {
+           index: true,
+           element: <Navigate to="/dashboard/my-parcels" replace />
+         },
          {
            path:'my-parcels',
            element: <MyParcel></MyParcel>
