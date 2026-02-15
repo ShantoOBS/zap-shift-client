@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import PaymentDetailsModal from "./PaymentDetailsModal";
 
 function formatPaymentDate(dateStr) {
   if (!dateStr) return "—";
@@ -13,8 +14,10 @@ function formatPaymentDate(dateStr) {
 }
 
 export default function PaymentHistory() {
-  const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user ?? null;
   const axiosSecure = useAxiosSecure();
+  const [selectedPayment, setSelectedPayment] = useState(null);
 
   const { data: payments = [] } = useQuery({
     queryKey: ["payments", user?.email],
@@ -63,7 +66,10 @@ export default function PaymentHistory() {
                       {payment.parcelName || "—"}
                     </td>
                     <td className="max-w-[200px] px-4 py-3 text-sm text-gray-600 md:px-6">
-                      <span className="block truncate" title={payment.senderEmail || payment.recipientName}>
+                      <span
+                        className="block truncate"
+                        title={payment.recipientName || payment.senderEmail || undefined}
+                      >
                         {payment.recipientName || payment.senderEmail || "—"}
                       </span>
                       {payment.recipientPhone && (
@@ -81,7 +87,8 @@ export default function PaymentHistory() {
                     <td className="px-4 py-3 text-right md:px-6">
                       <button
                         type="button"
-                        className="rounded-lg bg-[#056873] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#04515a]"
+                        className="rounded-md cursor-pointer bg-[#056873] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#04515a]"
+                        onClick={() => setSelectedPayment(payment)}
                       >
                         View
                       </button>
@@ -93,6 +100,13 @@ export default function PaymentHistory() {
           </table>
         </div>
       </div>
+
+      {selectedPayment && (
+        <PaymentDetailsModal
+          payment={selectedPayment}
+          onClose={() => setSelectedPayment(null)}
+        />
+      )}
     </div>
   );
 }

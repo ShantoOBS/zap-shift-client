@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
+import { TbBikeFilled } from "react-icons/tb";
 import {
   LayoutDashboard,
   Truck,
@@ -56,15 +57,13 @@ export default function DashBoardLayout() {
             </NavLink>
             <NavLink to="/dashboard/payment-history" className={navLinkClass}>
               <FileText className="size-5 shrink-0" />
-              <span>Invoices</span>
+              <span>Payment History</span>
             </NavLink>
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
-            >
-              <Store className="size-5 shrink-0" />
-              <span>Stores</span>
-            </Link>
+            <NavLink to="/dashboard/approve-riders" className={navLinkClass}>
+             
+              <TbBikeFilled className="size-5 shrink-0" />
+              <span>Approve Riders</span>
+            </NavLink>
             <Link
               to="/dashboard"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"

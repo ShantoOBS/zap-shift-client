@@ -6,12 +6,14 @@ import useAuth from "../../Hooks/useAuth";
 import Social from "../../Compontens/Social";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
   const { registerUser,updateUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const navigate=useNavigate();
   const location=useLocation();
@@ -29,6 +31,19 @@ export default function Register() {
               axios.post(url, formData)
               .then(res=>{
                     const photo=res.data.data.url;
+
+                      // create user in the database
+                      const userInfo = {
+                        email: data.email,
+                        displayName: data.name,
+                        photoURL: photo
+                    }
+                    axiosSecure.post('/users', userInfo)
+                    .then(res =>{
+                        if(res.data.insertedId){
+                           // console.log('user created in the database');
+                        }
+                    })
                     const userData={
                         displayName:data.name,
                         photoURL:photo,
@@ -36,7 +51,7 @@ export default function Register() {
 
                     updateUser(userData)
                     .then(()=>{
-                        console.log("profile update successfuly");
+                     //   console.log("profile update successfuly");
                         toast.success("Account Created");
                         navigate(location.state || '/')
                     })

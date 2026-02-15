@@ -89,6 +89,8 @@ export default function MyParcel() {
         console.log(res.data);
         // eslint-disable-next-line react-hooks/immutability
          window.location.href=res.data.url;
+
+       
        
   }
 
@@ -119,7 +121,7 @@ export default function MyParcel() {
                 <td>{ele.cost}</td>
                 <td>{
 
-                  ele.PaymentStatus === "paid" ? <span className='text-green-500'>Paid</span> :
+                  ele.paymentStatus === "paid" ? <span className='text-green-500'>Paid</span> :
 
                     <button onClick={()=>handlePayment(ele)} className="btn btn-xs sm:btn-sm md:btn-md ">
 
