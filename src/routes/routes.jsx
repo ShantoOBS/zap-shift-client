@@ -13,10 +13,13 @@ import PrivateRoutes from "./PrivateRoutes";
 import Rider from "../page/Rider/Rider";
 import SendParcel from "../page/SendParcel/SendParcel";
 import DashBoardLayout from "../layout/DashBoardLayout";
-import MyParcel from "../page/Dashboard/MyParcel";
+import MyParcel from "../page/Dashboard/MyParcel/MyParcel";
 import PaymentCancel from "../page/Dashboard/PaymentCancel";
 import PaymentHistory from "../page/Dashboard/PaymentHistory/PaymentHistory";
 import ApproveRiders from "../page/Dashboard/ApproveRiders/ApproveRiders";
+import UsersManagement from "../page/Dashboard/UsersManagement/UsersManagement";
+import AdminRoute from "./AdminRoute";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -95,7 +98,11 @@ export const router = createBrowserRouter([
           element: <PaymentHistory></PaymentHistory>
          },{
           path: 'approve-riders',
-          element: <ApproveRiders></ApproveRiders>
+          element: <AdminRoute><ApproveRiders></ApproveRiders></AdminRoute>
+         },
+         {
+          path: 'users-management',
+          element: <AdminRoute><UsersManagement></UsersManagement></AdminRoute>
          }
        
      ]

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import PaymentDetailsModal from "./PaymentDetailsModal";
+import PaymentDetailsModal from "./Components/PaymentDetailsModal";
 
 function formatPaymentDate(dateStr) {
   if (!dateStr) return "—";

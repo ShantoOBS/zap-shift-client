@@ -1,5 +1,8 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { TbBikeFilled } from "react-icons/tb";
+import { FaUserShield } from "react-icons/fa";
+import useRole from "../Hooks/useRole";
+
 import {
   LayoutDashboard,
   Truck,
@@ -22,7 +25,7 @@ import Logo from "../Compontens/Logo";
 export default function DashBoardLayout() {
   const { user, logOut } = useAuth() || {};
   const navigate = useNavigate();
-
+  const { role } = useRole();
   const handleLogout = () => {
     logOut?.();
     navigate("/");
@@ -59,11 +62,21 @@ export default function DashBoardLayout() {
               <FileText className="size-5 shrink-0" />
               <span>Payment History</span>
             </NavLink>
-            <NavLink to="/dashboard/approve-riders" className={navLinkClass}>
-             
-              <TbBikeFilled className="size-5 shrink-0" />
-              <span>Approve Riders</span>
-            </NavLink>
+           
+              {
+                role === 'admin' && (
+                  <>
+                    <NavLink to="/dashboard/approve-riders" className={navLinkClass}>
+                      <TbBikeFilled className="size-5 shrink-0" />
+                      <span>Approve Riders</span>
+                    </NavLink>
+                    <NavLink to="/dashboard/users-management" className={navLinkClass}>
+                      <FaUserShield className="size-5 shrink-0" />
+                      <span>Users Management</span>
+                    </NavLink>
+                  </>
+                )
+              }
             <Link
               to="/dashboard"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
