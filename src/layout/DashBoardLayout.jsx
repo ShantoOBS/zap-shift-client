@@ -70,6 +70,10 @@ export default function DashBoardLayout() {
                       <TbBikeFilled className="size-5 shrink-0" />
                       <span>Approve Riders</span>
                     </NavLink>
+                    <NavLink to="/dashboard/assign-riders" className={navLinkClass}>
+                      <TbBikeFilled className="size-5 shrink-0" />
+                      <span>Assign Riders</span>
+                    </NavLink>
                     <NavLink to="/dashboard/users-management" className={navLinkClass}>
                       <FaUserShield className="size-5 shrink-0" />
                       <span>Users Management</span>

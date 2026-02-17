@@ -34,7 +34,7 @@ const Rider = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top-center",
                         icon: "success",
                         title: "Your application has been submitted. We will reach to you in 145 days",
                         showConfirmButton: false,

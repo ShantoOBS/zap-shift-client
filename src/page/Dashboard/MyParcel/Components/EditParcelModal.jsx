@@ -28,7 +28,7 @@ export default function EditParcelModal({ parcel, onClose, onSave, isSaving: par
         cost: cost.trim() === "" ? parcel.cost : Number(cost)
       };
       // PATCH request to update the parcel
-      const { data } = await axiosSecure.patch(`/parcels/${parcel._id}`, payload);
+      const { data } = await axiosSecure.patch(`/parcels/update-parcel/${parcel._id}`, payload);
       if (data && (data.modifiedCount || data.matchedCount || data.acknowledged)) {
         Swal.fire({
           title: "Updated",
