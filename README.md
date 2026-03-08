@@ -146,15 +146,108 @@ For testing payment flows (e.g. Stripe or similar), you can use this test Visa c
 
 ---
 
-## Project structure (high level)
+## Project structure
 
-- `src/page/` — Page components (Home, Auth, Dashboard, Coverage, Rider, Send Parcel, etc.)
-- `src/layout/` — Root, Auth, and Dashboard layouts
-- `src/routes/` — React Router config, private/admin/rider route wrappers
-- `src/Hooks/` — `useAuth`, `useAxiosSecure`, `useRole`, etc.
-- `src/Context/` — Auth context and provider
-- `src/Compontens/` — Shared components (Logo, Social, CircleButton)
-- `src/firebase/` — Firebase initialization
+```
+zap-shift-client/
+├── public/                    # Static assets
+├── src/
+│   ├── main.jsx              # App entry, React root, initial loader wrapper
+│   ├── App.jsx
+│   ├── index.css              # Global styles, Tailwind, CSS variables
+│   │
+│   ├── page/                  # Page-level components
+│   │   ├── Home/
+│   │   │   ├── Home.jsx
+│   │   │   └── HomeComponents/    # HomeBanner, OurServices, FQA, Tracking, etc.
+│   │   ├── Auth/
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── ForgetPassword.jsx
+│   │   │   ├── EnterCode.jsx
+│   │   │   └── ResetPassword.jsx
+│   │   ├── About/
+│   │   │   └── About.jsx
+│   │   ├── Coverage/
+│   │   │   └── Coverage.jsx       # Coverage map (Leaflet)
+│   │   ├── Rider/
+│   │   │   └── Rider.jsx          # Be a Rider application
+│   │   ├── SendParcel/
+│   │   │   └── SendParcel.jsx
+│   │   ├── ParcelTrack/
+│   │   │   └── ParcelTrack.jsx    # Track by ID
+│   │   ├── PricingCalculator/
+│   │   │   └── PricingCalculator.jsx
+│   │   ├── Shared/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Profile.tsx
+│   │   │   ├── Loading.jsx
+│   │   │   ├── InitialLoader.jsx  # First-load splash with logo
+│   │   │   └── Forbidden.jsx
+│   │   └── Dashboard/
+│   │       ├── DashboardOverView/
+│   │       │   ├── DashboardOverView.jsx
+│   │       │   └── Components/    # OverViewHeader, OverviewCards, ShipmentStatistics,
+│   │       │                       # ShippingReports, LateInvoices, ShipmentAlerts
+│   │       ├── MyParcel/
+│   │       │   ├── MyParcel.jsx
+│   │       │   └── Components/     # EditParcelModal, ParcelDetailsModal
+│   │       ├── PaymentHistory/
+│   │       │   ├── PaymentHistory.jsx
+│   │       │   └── Components/     # PaymentDetailsModal, PaymentCancel
+│   │       ├── ProfileDetails/
+│   │       │   └── ProfileDetails.jsx
+│   │       ├── Settings/
+│   │       │   └── Settings.jsx
+│   │       ├── Help/
+│   │       │   └── Help.jsx
+│   │       ├── ApproveRiders/
+│   │       │   └── ApproveRiders.jsx
+│   │       ├── AssignRiders/
+│   │       │   └── AssignRiders.jsx
+│   │       ├── UsersManagement/
+│   │       │   └── UsersManagement.jsx
+│   │       ├── AssignedDeliveries/
+│   │       │   └── AssignedDeliveries.tsx
+│   │       ├── CompletedDeliveries/
+│   │       │   └── CompletedDeliveries.tsx
+│   │       └── PaymentCancel.jsx
+│   │
+│   ├── layout/
+│   │   ├── RootLayout.jsx         # Navbar + Outlet + Footer
+│   │   ├── AuthLayout.jsx        # Auth pages wrapper
+│   │   └── DashBoardLayout.jsx   # Sidebar + header + Outlet
+│   │
+│   ├── routes/
+│   │   ├── routes.jsx             # createBrowserRouter, all routes
+│   │   ├── PrivateRoutes.jsx     # Require auth
+│   │   ├── AdminRoute.jsx        # Require admin role
+│   │   └── RiderRoute.jsx        # Require rider role
+│   │
+│   ├── Hooks/
+│   │   ├── useAuth.jsx
+│   │   ├── useAxiosSecure.jsx    # Axios + JWT interceptor
+│   │   ├── useRole.jsx
+│   │   └── useAxios.jsx
+│   │
+│   ├── Context/
+│   │   └── AuthContext/
+│   │       ├── AuthContext.jsx
+│   │       └── AuthProvider.jsx
+│   │
+│   ├── Compontens/               # Shared UI (note: typo in folder name)
+│   │   ├── Logo.jsx
+│   │   ├── Social.jsx
+│   │   └── CircleButton.jsx
+│   │
+│   └── firebase/
+│       └── firebase.init.js
+│
+├── vite.config.js
+├── package.json
+└── README.md
+```
 
 ---
 
