@@ -115,6 +115,22 @@ Configure your backend API base URL and Firebase config (e.g. in env or app conf
 
 ---
 
+## Test accounts
+
+Use these credentials to sign in and test role-based features (ensure these users exist in Firebase and your backend with the correct roles):
+
+| Role   | Email            | Password |
+|--------|------------------|----------|
+| Admin  | admin@gmail.com  | 123456   |
+| User   | user@gmail.com   | 123456   |
+| Rider  | rider@gmail.com  | 123456   |
+
+- **Admin:** Approve Riders, Assign Riders, Users Management.
+- **User:** Send parcels, My Parcels, Payment History, dashboard overview.
+- **Rider:** Assigned Deliveries, Completed Deliveries.
+
+---
+
 ## Project structure (high level)
 
 - `src/page/` — Page components (Home, Auth, Dashboard, Coverage, Rider, Send Parcel, etc.)
