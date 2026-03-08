@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { TbBikeFilled } from "react-icons/tb";
-import { FaUserShield } from "react-icons/fa";
+import { FaUserShield, FaTasks } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
 
 import {
@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
 import Logo from "../Compontens/Logo";
-
+import { SiGoogletasks } from "react-icons/si";
 export default function DashBoardLayout() {
   const { user, logOut } = useAuth() || {};
   const navigate = useNavigate();
@@ -62,6 +62,23 @@ export default function DashBoardLayout() {
               <FileText className="size-5 shrink-0" />
               <span>Payment History</span>
             </NavLink>
+
+            {
+                            role === 'rider' && (<>
+                                
+                                    <NavLink className={navLinkClass} to="/dashboard/assigned-deliveries">
+                                        <FaTasks className="size-5 shrink-0" />
+                                        <span>Assigned Deliveries</span>
+                                    </NavLink>
+                               
+                                
+                                    <NavLink  className={navLinkClass} to="/dashboard/completed-deliveries">
+                                        <SiGoogletasks className="size-5 shrink-0" />
+                                        <span >Completed Deliveries</span>
+                                    </NavLink>
+                                
+                            </>)
+             }
            
               {
                 role === 'admin' && (
@@ -127,7 +144,7 @@ export default function DashBoardLayout() {
             <button
               type="button"
               onClick={handleLogout}
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 cursor-pointer"
             >
               <LogOut className="size-5 shrink-0" />
               <span>Logout</span>
@@ -169,7 +186,7 @@ export default function DashBoardLayout() {
                     <p className="text-sm font-semibold text-gray-900">
                       {user?.displayName || "User"}
                     </p>
-                    <p className="text-xs text-gray-500">Admin</p>
+                    <p className="text-xs text-gray-500">{role}</p>
                   </div>
                   <ChevronDown className="size-4 text-gray-500" />
                 </label>
@@ -274,7 +291,7 @@ export default function DashBoardLayout() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 hover:bg-gray-100"
+                className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer"
               >
                 <LogOut className="size-5 shrink-0" />
                 <span>Logout</span>

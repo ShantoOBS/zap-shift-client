@@ -31,55 +31,55 @@ const AssignRiders = () => {
         riderModalRef.current.showModal();
     };
 
-    const handleAssignRider = async (rider) => {
-        // Send ONLY expected keys the backend expects
+    const handleAssignRider = (rider) => {
         const riderAssignInfo = {
             riderId: rider._id,
             riderEmail: rider.email,
-            riderName: rider.name
-            // Do NOT send parcelId, it is in the URL param for the PATCH route
+            riderName: rider.name,
+            parcelId: selectedParcel._id,
+            trackingId: selectedParcel.trackingId
         };
-        try {
-            const res = await axiosSecure.patch(`/parcels/${selectedParcel._id}`, riderAssignInfo);
-            // API described returns the rider update result, not { modifiedCount }
-            if (res?.data?.modifiedCount || res?.data?.matchedCount || res?.data?.acknowledged) {
-                riderModalRef.current.close();
-                parcelsRefetch();
-                Swal.fire({
-                    position: "top-center",
-                    icon: "success",
-                    title: `Rider has been assigned.`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            } else {
-                // generic error fallback
+        axiosSecure.patch(`/parcels/${selectedParcel._id}`, riderAssignInfo)
+            .then((res) => {
+                if (res?.data?.modifiedCount) {
+                    riderModalRef.current?.close();
+                    parcelsRefetch();
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Rider has been assigned.",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Assignment failed",
+                        text: "Could not assign rider. Please try again."
+                    });
+                }
+            })
+            .catch((error) => {
                 Swal.fire({
                     icon: "error",
                     title: "Assignment failed",
-                    text: "Could not assign rider. Please try again."
+                    text: error?.response?.data?.message || "Could not assign rider."
                 });
-            }
-        } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Assignment failed",
-                text: error?.response?.data?.message || "Could not assign rider."
             });
-        }
     };
 
     return (
         <div>
             <div className="overflow-hidden rounded-2xl bg-[#f4f4f5] shadow-sm">
                 <h1 className="p-4 text-2xl font-bold text-[#056873] md:text-3xl">
-                    Assign Riders
+                    Assign Riders: {parcels.length}
                 </h1>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
                             <tr className="border-b border-gray-200 bg-white/80 text-left text-sm font-medium text-gray-700">
-                                <th className="px-4 py-4 md:px-6">Parcel Name</th>
+                                <th className="px-4 py-4 md:px-6">#</th>
+                                <th className="px-4 py-4 md:px-6">Name</th>
                                 <th className="px-4 py-4 md:px-6">Cost</th>
                                 <th className="px-4 py-4 md:px-6">Created At</th>
                                 <th className="px-4 py-4 md:px-6">Pickup District</th>
@@ -90,7 +90,7 @@ const AssignRiders = () => {
                             {parcels.length === 0 ? (
                                 <tr>
                                     <td
-                                        colSpan={5}
+                                        colSpan={6}
                                         className="px-4 py-12 text-center text-sm text-gray-500 md:px-6"
                                     >
                                         No parcels found.
@@ -102,6 +102,7 @@ const AssignRiders = () => {
                                         key={parcel._id || index}
                                         className="border-b border-gray-100 bg-white transition-colors last:border-0 hover:bg-gray-50/80"
                                     >
+                                        <td className="px-4 py-3 text-sm font-medium text-gray-900 md:px-6">{index + 1}</td>
                                         <td className="px-4 py-3 text-sm font-medium text-gray-900 md:px-6">
                                             {parcel.parcelName || "—"}
                                         </td>
@@ -109,8 +110,8 @@ const AssignRiders = () => {
                                             {parcel.cost}
                                         </td>
                                         <td className="px-4 py-3 text-sm text-gray-700 md:px-6">
-                                            {parcel.createdAt 
-                                                ? new Date(parcel.createdAt).toLocaleString() 
+                                            {parcel.createdAt
+                                                ? new Date(parcel.createdAt).toLocaleString()
                                                 : "—"}
                                         </td>
                                         <td className="px-4 py-3 text-sm text-gray-700 md:px-6">
@@ -119,7 +120,7 @@ const AssignRiders = () => {
                                         <td className="px-4 py-3 text-right md:px-6">
                                             <button
                                                 onClick={() => openAssignRiderModal(parcel)}
-                                                className="rounded-md cursor-pointer bg-[#056873] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#04515a]"
+                                                className="btn btn-primary btn-xs sm:btn-sm md:btn-md text-black"
                                             >
                                                 Find Riders
                                             </button>
@@ -133,14 +134,14 @@ const AssignRiders = () => {
             </div>
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg mb-3">Available Riders ({riders.length})</h3>
+                    <h3 className="font-bold text-lg mb-3">Riders: {riders.length}</h3>
                     <div className="overflow-x-auto">
                         <table className="table w-full">
                             <thead>
                                 <tr className="border-b border-gray-200 bg-white/80 text-left text-sm font-medium text-gray-700">
                                     <th className="px-4 py-4 md:px-6">#</th>
-                                    <th className="px-4 py-4 md:px-6">Rider Name</th>
-                               
+                                    <th className="px-4 py-4 md:px-6">Name</th>
+                                    <th className="px-4 py-4 md:px-6">Email</th>
                                     <th className="px-4 py-4 md:px-6 text-right">Action</th>
                                 </tr>
                             </thead>
@@ -162,11 +163,11 @@ const AssignRiders = () => {
                                         >
                                             <td className="px-4 py-3 text-sm font-medium text-gray-900 md:px-6">{i + 1}</td>
                                             <td className="px-4 py-3 text-sm text-gray-700 md:px-6">{rider.name}</td>
-                                         
+                                            <td className="px-4 py-3 text-sm text-gray-700 md:px-6">{rider.email}</td>
                                             <td className="px-4 py-3 text-right md:px-6">
                                                 <button
                                                     onClick={() => handleAssignRider(rider)}
-                                                    className="rounded-md cursor-pointer bg-[#056873] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#04515a]"
+                                                    className="btn btn-primary btn-xs sm:btn-sm md:btn-md text-black"
                                                 >
                                                     Assign
                                                 </button>
@@ -179,9 +180,7 @@ const AssignRiders = () => {
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
-                            <button className="rounded-xl border cursor-pointer border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                                Close
-                            </button>
+                            <button className="btn">Close</button>
                         </form>
                     </div>
                 </div>
