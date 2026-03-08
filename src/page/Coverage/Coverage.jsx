@@ -34,8 +34,8 @@ export default function Coverage() {
             <div className='my-5 '>
 
                 <form onSubmit={hendleSubmit}>
-                    <div className="join">
-                        <label className="input">
+                    <div className="join bg-white text-black border-gray-300">
+                        <label className="input bg-white text-black border-gray-300">
                             <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g
                                     strokeLinejoin="round"
@@ -48,9 +48,9 @@ export default function Coverage() {
                                     <path d="m21 21-4.3-4.3"></path>
                                 </g>
                             </svg>
-                            <input type="search" name="location" required placeholder="Search" />
+                            <input type="search" name="location" className='bg-white text-black border-gray-300' required placeholder="Search"  />
                         </label>
-                        <input className='bg-[#caeb66] text-black btn' type="submit" value="Search" />
+                        <input className='bg-[#caeb66] text-black btn ' type="submit" value="Search" />
 
                     </div>
                 </form>

@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { TbBikeFilled } from "react-icons/tb";
 import { FaUserShield, FaTasks } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
+import Profile from "../page/Shared/Profile";
 
 import {
   LayoutDashboard,
@@ -75,7 +76,7 @@ export default function DashBoardLayout() {
                 Menu
               </p>
             )}
-            <NavLink to="/dashboard" end className={navLinkClass}>
+            <NavLink to="/dashboard/overview" end className={navLinkClass}>
               <LayoutDashboard className="size-5 shrink-0" />
               {!isCollapsed && <span>Dashboard</span>}
             </NavLink>
@@ -84,7 +85,7 @@ export default function DashBoardLayout() {
               {!isCollapsed && (
                 <>
                   <span className="flex-1">All Deliveries</span>
-                  <Plus className="size-4 shrink-0" />
+                 
                 </>
               )}
             </NavLink>
@@ -124,7 +125,7 @@ export default function DashBoardLayout() {
             )}
 
             <Link
-              to="/dashboard"
+              to="/pricing-calculator"
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
                 isCollapsed ? "justify-center px-2" : ""
               }`}
@@ -152,7 +153,7 @@ export default function DashBoardLayout() {
               </p>
             )}
             <Link
-              to="/dashboard"
+              to="/dashboard/settings"
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
                 isCollapsed ? "justify-center px-2" : ""
               }`}
@@ -160,17 +161,9 @@ export default function DashBoardLayout() {
               <Settings className="size-5 shrink-0" />
               {!isCollapsed && <span>Settings</span>}
             </Link>
+       
             <Link
-              to="/dashboard"
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
-                isCollapsed ? "justify-center px-2" : ""
-              }`}
-            >
-              <Key className="size-5 shrink-0" />
-              {!isCollapsed && <span>Change Password</span>}
-            </Link>
-            <Link
-              to="/dashboard"
+              to="/dashboard/help"
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
                 isCollapsed ? "justify-center px-2" : ""
               }`}
@@ -213,36 +206,7 @@ export default function DashBoardLayout() {
               >
                 <Bell className="size-5 text-gray-600" />
               </button>
-              <div className="dropdown dropdown-end">
-                <label
-                  tabIndex={0}
-                  className="flex cursor-pointer items-center gap-3 rounded-lg p-1.5 hover:bg-gray-50"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#056873] text-sm font-semibold text-white">
-                    {user?.displayName?.[0] || user?.email?.[0] || "U"}
-                  </div>
-                  <div className="hidden text-left sm:block">
-                    <p className="text-sm font-semibold text-gray-900">
-                      {user?.displayName || "User"}
-                    </p>
-                    <p className="text-xs text-gray-500">{role}</p>
-                  </div>
-                  <ChevronDown className="size-4 text-gray-500" />
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu rounded-box z-50 mt-2 w-52 bg-white p-2 shadow-lg ring-1 ring-black/5"
-                >
-                  <li>
-                    <Link to="/dashboard">Profile</Link>
-                  </li>
-                  <li>
-                    <button type="button" onClick={handleLogout}>
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
+             <Profile />
             </div>
           </header>
 
@@ -306,27 +270,20 @@ export default function DashBoardLayout() {
               <p className="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
                 General
               </p>
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+              <NavLink
+                to="/dashboard/settings"
+                className={navLinkClass}
               >
                 <Settings className="size-5 shrink-0" />
                 <span>Settings</span>
-              </Link>
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
-              >
-                <Key className="size-5 shrink-0" />
-                <span>Change Password</span>
-              </Link>
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+              </NavLink>
+              <NavLink
+                to="/dashboard/help"
+                className={navLinkClass}
               >
                 <HelpCircle className="size-5 shrink-0" />
                 <span>Help</span>
-              </Link>
+              </NavLink>
               <button
                 type="button"
                 onClick={handleLogout}

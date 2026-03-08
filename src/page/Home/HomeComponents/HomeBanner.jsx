@@ -62,10 +62,10 @@ export default function HomeBanner() {
                   — we deliver on time, every time.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                  <Link to="/send-parcel">
+                  <Link to="/dashboard/my-parcels">
                     <button
                       type="button"
-                      className="rounded-full bg-[#caeb66] px-5 py-2.5 text-sm font-semibold text-black shadow-sm transition-colors hover:bg-[#b8d95a]"
+                      className="rounded-full bg-[#caeb66] cursor-pointer px-5 py-2.5 text-sm font-semibold text-black shadow-sm transition-colors hover:bg-[#b8d95a]"
                     >
                       Track Your Parcel
                     </button>
@@ -74,7 +74,7 @@ export default function HomeBanner() {
                   <Link to="/rider">
                     <button
                       type="button"
-                      className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-[#606060] transition-colors hover:bg-gray-50"
+                      className="rounded-full border cursor-pointer border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-[#606060] transition-colors hover:bg-gray-50"
                     >
                       Be a rider
                     </button>

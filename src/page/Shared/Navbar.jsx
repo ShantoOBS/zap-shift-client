@@ -7,11 +7,12 @@ import CircleButton from "../../Compontens/CircleButton";
 import useAuth from "../../Hooks/useAuth";
 
 const navItems = [
-  { to: "/services", label: "Services" },
-  { to: "/coverage", label: "Coverage" },
-  { to: "/about", label: "About Us" },
   { to: "/send-parcel", label: "Send Parcel" },
   { to: "/rider", label: "Be a Rider" },
+  { to: "/coverage", label: "Coverage" },
+  { to: "/pricing-calculator", label: "Pricing Calculator" },
+  { to: "/about", label: "About Us" },
+
 ];
 
 export default function Navbar() {
@@ -112,7 +113,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={handleLogOut}
-              className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
+              className="rounded-full border cursor-pointer border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
             >
               Sign Out
             </button>
@@ -120,20 +121,14 @@ export default function Navbar() {
             <Link to="/login">
               <button
                 type="button"
-                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
+                className="rounded-full border cursor-pointer border-gray-200 bg-white px-4 py-2 text-sm font-medium text-[#606060] transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-black"
               >
                 Sign In
               </button>
             </Link>
           )}
-          <Link to="/rider">
-            <button
-              type="button"
-              className="rounded-full bg-[#caeb66] px-4 py-2 text-sm font-semibold text-black shadow-sm transition-all duration-200 hover:bg-[#b8d95a] hover:shadow"
-            >
-              Be a Rider
-            </button>
-          </Link>
+       
+      
           <CircleButton />
         </div>
 

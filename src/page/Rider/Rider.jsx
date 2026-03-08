@@ -6,6 +6,11 @@ import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import RiderImg from '/assets/Rider.png';
 
+
+const selectClass =
+  "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition-colors focus:border-[#056873] focus:outline-none focus:ring-2 focus:ring-[#056873]/20";
+
+
 const Rider = () => {
     const {
         register,
@@ -58,7 +63,7 @@ const Rider = () => {
                                 type="text"
                                 {...register('name')}
                                 defaultValue={user?.displayName}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="Rider Name"
                             />
 
@@ -68,7 +73,7 @@ const Rider = () => {
                                 type="text"
                                 {...register('email')}
                                 defaultValue={user?.email}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="Rider Email"
                             />
 
@@ -78,7 +83,7 @@ const Rider = () => {
                                 <select
                                     {...register('region')}
                                     defaultValue="Pick a region"
-                                    className="select w-full"
+                                    className={selectClass}
                                 >
                                     <option disabled={true}>Pick a region</option>
                                     {
@@ -95,7 +100,7 @@ const Rider = () => {
                                 <select
                                     {...register('district')}
                                     defaultValue="Pick a district"
-                                    className="select w-full"
+                                    className={selectClass}
                                 >
                                     <option disabled={true}>Pick a district</option>
                                     {
@@ -112,7 +117,7 @@ const Rider = () => {
                             <input
                                 type="text"
                                 {...register('address')}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="Your Address"
                             />
                         </fieldset>
@@ -122,7 +127,7 @@ const Rider = () => {
                             <input
                                 type="text"
                                 {...register('license')}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="Driving License"
                             />
 
@@ -130,7 +135,7 @@ const Rider = () => {
                             <input
                                 type="text"
                                 {...register('nid')}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="NID"
                             />
 
@@ -138,7 +143,7 @@ const Rider = () => {
                             <input
                                 type="text"
                                 {...register('bike')}
-                                className="input w-full"
+                                className="input w-full bg-white text-black placeholder:text-gray-500 border-gray-300"
                                 placeholder="Bike"
                             />
                         </fieldset>

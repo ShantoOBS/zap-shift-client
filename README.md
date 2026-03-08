@@ -1,16 +1,132 @@
-# React + Vite
+# ZapShift — Parcel & Delivery Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for parcel delivery and logistics. Customers can send parcels, track shipments, and view coverage; riders can manage deliveries; and admins can approve riders, assign deliveries, and manage users.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project overview
 
-## React Compiler
+**ZapShift** is a full-featured delivery dashboard built with React. It includes:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Public:** Home, Services, Coverage map, About, Pricing Calculator, Send Parcel, Be a Rider
+- **Auth:** Login, Register, Forgot/Reset Password (Firebase Authentication)
+- **Dashboard:** Overview (metrics, shipment statistics, shipping reports, late invoices, shipment alerts), My Parcels, Payment History, Profile, Settings, Help
+- **Admin:** Approve Riders, Assign Riders, Users Management
+- **Rider:** Assigned Deliveries, Completed Deliveries
+- **Parcel tracking** by tracking ID
 
-## Expanding the ESLint configuration
+The UI is responsive, with a collapsible sidebar, role-based routes, and secure API calls using JWT.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Technologies used
+
+### Core
+
+| Technology | Purpose |
+|------------|--------|
+| **React 19** | UI library |
+| **Vite** (rolldown-vite) | Build tool and dev server |
+| **React Router 7** | Client-side routing |
+
+### Styling & UI
+
+| Technology | Purpose |
+|------------|--------|
+| **Tailwind CSS 4** | Utility-first CSS |
+| **DaisyUI** | Component themes and utilities |
+| **Lucide React** | Icons |
+| **React Icons** | Additional icons |
+| **Framer Motion** / **Motion** | Animations and transitions |
+| **@material-tailwind/react** | Extra UI components |
+| **tailwind-merge** / **clsx** | Class name utilities |
+
+### Data & API
+
+| Technology | Purpose |
+|------------|--------|
+| **TanStack React Query** | Server state, caching, and API fetching |
+| **Axios** | HTTP client and secure API (JWT) |
+| **Firebase** | Authentication (email/password, Google, etc.) |
+
+### Forms & feedback
+
+| Technology | Purpose |
+|------------|--------|
+| **React Hook Form** | Form state and validation |
+| **SweetAlert2** | Alerts and confirmations |
+| **React Hot Toast** | Toast notifications |
+
+### Charts & maps
+
+| Technology | Purpose |
+|------------|--------|
+| **Recharts** | Charts (e.g. shipment statistics area chart) |
+| **Leaflet** | Maps |
+| **React Leaflet** | React bindings for Leaflet (coverage map) |
+
+### Carousels & motion
+
+| Technology | Purpose |
+|------------|--------|
+| **Swiper** | Carousels and sliders |
+| **Embla Carousel React** | Carousel components |
+| **React Responsive Carousel** | Responsive carousels |
+| **React Fast Marquee** | Marquee text/banners |
+| **React Lottie** | Lottie animations |
+
+### Tooling & quality
+
+| Technology | Purpose |
+|------------|--------|
+| **ESLint** | Linting |
+| **@vitejs/plugin-react** | React support in Vite |
+
+---
+
+## Getting started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Install and run
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Other scripts
+
+```bash
+npm run build   # Production build
+npm run preview # Preview production build
+npm run lint    # Run ESLint
+```
+
+### Environment
+
+Configure your backend API base URL and Firebase config (e.g. in env or app config). The app uses a secure Axios instance that sends the Firebase JWT for authenticated API requests.
+
+---
+
+## Project structure (high level)
+
+- `src/page/` — Page components (Home, Auth, Dashboard, Coverage, Rider, Send Parcel, etc.)
+- `src/layout/` — Root, Auth, and Dashboard layouts
+- `src/routes/` — React Router config, private/admin/rider route wrappers
+- `src/Hooks/` — `useAuth`, `useAxiosSecure`, `useRole`, etc.
+- `src/Context/` — Auth context and provider
+- `src/Compontens/` — Shared components (Logo, Social, CircleButton)
+- `src/firebase/` — Firebase initialization
+
+---
+
+## License
+
+Private. All rights reserved.

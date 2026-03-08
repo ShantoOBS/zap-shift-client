@@ -14,7 +14,7 @@ import Rider from "../page/Rider/Rider";
 import SendParcel from "../page/SendParcel/SendParcel";
 import DashBoardLayout from "../layout/DashBoardLayout";
 import MyParcel from "../page/Dashboard/MyParcel/MyParcel";
-import PaymentCancel from "../page/Dashboard/PaymentCancel";
+import PaymentCancel from "../page/Dashboard/PaymentHistory/Components/PaymentCancel";
 import PaymentHistory from "../page/Dashboard/PaymentHistory/PaymentHistory";
 import ApproveRiders from "../page/Dashboard/ApproveRiders/ApproveRiders";
 import UsersManagement from "../page/Dashboard/UsersManagement/UsersManagement";
@@ -22,8 +22,13 @@ import AssignedDeliveries from "../page/Dashboard/AssignedDeliveries/AssignedDel
 import CompletedDeliveries from "../page/Dashboard/CompletedDeliveries/CompletedDeliveries";
 import AdminRoute from "./AdminRoute";
 import AssignRiders from "../page/Dashboard/AssignRiders/AssignRiders";
+import ProfileDetails from "../page/Dashboard/ProfileDetails/ProfileDetails";
+import Settings from "../page/Dashboard/Settings/Settings";
+import Help from "../page/Dashboard/Help/Help";
 import RiderRoute from "./RiderRoute";
 import ParcelTrack from "../page/ParcelTrack/ParcelTrack";
+import PricingCalculator from "../page/PricingCalculator/PricingCalculator";
+import DashboardOverView from "../page/Dashboard/DashboardOverView/DashboardOverView";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +47,10 @@ export const router = createBrowserRouter([
           {
             path:'/about',
             element: <About></About>
+          },
+          {
+            path:'/pricing-calculator',
+            element: <PricingCalculator></PricingCalculator>
           },
           {
             path:'/rider',
@@ -95,8 +104,28 @@ export const router = createBrowserRouter([
            element: <Navigate to="/dashboard/my-parcels" replace />
          },
          {
+           path: 'overview',
+           element: <DashboardOverView></DashboardOverView>
+         },
+         {
+          path: 'overview',
+          element: <DashboardOverView></DashboardOverView>
+         },
+         {
            path:'my-parcels',
            element: <MyParcel></MyParcel>
+         },
+         {
+           path: 'profile',
+           element: <ProfileDetails></ProfileDetails>
+         },
+         {
+           path: 'settings',
+           element: <Settings></Settings>
+         },
+         {
+           path: 'help',
+           element: <Help></Help>
          },
          {
           path:'payment-cancel',

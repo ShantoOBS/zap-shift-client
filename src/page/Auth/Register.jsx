@@ -74,21 +74,21 @@ export default function Register() {
           <label className="label ">Full Name</label>
           <input
             type="text"
-            className="input w-full"
+            className="input w-full bg-white text-black border-gray-300"
             placeholder="Your Name"
             {...register("name", { required: "Full Name is required" })}
           />
           {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
-         <label className="label">Photo</label>
+         <label className="label ">Photo</label>
           <input type="file"
           {...register("photo", { required: "Photo is required" })}
-          className="file-input file-input-ghost" />
+          className="file-input file-input-ghost bg-white text-black border-gray-300" />
 
           {/* Email */}
           <label className="label">Email</label>
           <input
             type="email"
-            className="input w-full"
+            className="input w-full bg-white text-black border-gray-300"
             placeholder="Email"
             {...register("email", { required: "Email is required" })}
           />
@@ -99,7 +99,7 @@ export default function Register() {
           <div className="relative w-full">
             <input
               type={showPassword ? "text" : "password"}
-              className="input pr-10 w-full"
+              className="input  w-full bg-white text-black border-gray-300"
               placeholder="Password"
               {...register("password", {
                 required: "Password is required",
