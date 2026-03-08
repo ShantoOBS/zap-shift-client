@@ -58,7 +58,7 @@ const SendParcel = () => {
       text: `You will be charged ৳${cost}. Continue?`,
       icon: "question",
       showCancelButton: true,
-      confirmButtonColor: "#056873",
+      confirmButtonColor: "#caeb66",
       cancelButtonColor: "#64748b",
       confirmButtonText: "Yes, send parcel",
     }).then((result) => {
@@ -70,7 +70,7 @@ const SendParcel = () => {
               title: "Parcel booked",
               text: "Confirm and continue with payment in My Parcels.",
               icon: "success",
-              confirmButtonColor: "#056873",
+              confirmButtonColor: "#caeb66",
             });
           }
         });

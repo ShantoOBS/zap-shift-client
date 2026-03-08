@@ -120,7 +120,7 @@ const AssignRiders = () => {
                                         <td className="px-4 py-3 text-right md:px-6">
                                             <button
                                                 onClick={() => openAssignRiderModal(parcel)}
-                                                className="btn btn-primary btn-xs sm:btn-sm md:btn-md text-black"
+                                                className="btn btn-primary bg-[#caeb66]  btn-xs sm:btn-sm md:btn-md text-black"
                                             >
                                                 Find Riders
                                             </button>
@@ -167,7 +167,7 @@ const AssignRiders = () => {
                                             <td className="px-4 py-3 text-right md:px-6">
                                                 <button
                                                     onClick={() => handleAssignRider(rider)}
-                                                    className="btn btn-primary btn-xs sm:btn-sm md:btn-md text-black"
+                                                    className="btn btn-primary bg-[#caeb66]  btn-xs sm:btn-sm md:btn-md text-black"
                                                 >
                                                     Assign
                                                 </button>

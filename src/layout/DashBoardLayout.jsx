@@ -4,7 +4,7 @@ import { TbBikeFilled } from "react-icons/tb";
 import { FaUserShield, FaTasks } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
 import Profile from "../page/Shared/Profile";
-
+import { MdAssignmentAdd } from "react-icons/md";
 import {
   LayoutDashboard,
   Truck,
@@ -39,7 +39,7 @@ export default function DashBoardLayout() {
 
   const navLinkClass = ({ isActive }) =>
     `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors shrink-0 ${
-      isActive ? "bg-[#056873] text-white" : "text-gray-700 hover:bg-gray-100"
+      isActive ? "bg-[#caeb66]  text-black" : "text-gray-700 hover:bg-gray-100"
     } ${isCollapsed ? "justify-center px-2" : ""}`;
 
   return (
@@ -114,7 +114,7 @@ export default function DashBoardLayout() {
                   {!isCollapsed && <span>Approve Riders</span>}
                 </NavLink>
                 <NavLink to="/dashboard/assign-riders" className={navLinkClass}>
-                  <TbBikeFilled className="size-5 shrink-0" />
+                  <MdAssignmentAdd  className="size-5 shrink-0" />
                   {!isCollapsed && <span>Assign Riders</span>}
                 </NavLink>
                 <NavLink to="/dashboard/users-management" className={navLinkClass}>
@@ -152,25 +152,21 @@ export default function DashBoardLayout() {
                 General
               </p>
             )}
-            <Link
+            <NavLink
               to="/dashboard/settings"
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
-                isCollapsed ? "justify-center px-2" : ""
-              }`}
+              className={navLinkClass}
             >
               <Settings className="size-5 shrink-0" />
               {!isCollapsed && <span>Settings</span>}
-            </Link>
+            </NavLink>
        
-            <Link
+            <NavLink
               to="/dashboard/help"
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${
-                isCollapsed ? "justify-center px-2" : ""
-              }`}
+              className={navLinkClass}
             >
               <HelpCircle className="size-5 shrink-0" />
               {!isCollapsed && <span>Help</span>}
-            </Link>
+            </NavLink>
             <button
               type="button"
               onClick={handleLogout}
@@ -230,7 +226,7 @@ export default function DashBoardLayout() {
               <p className="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Menu
               </p>
-              <NavLink to="/dashboard" end className={navLinkClass}>
+              <NavLink to="/dashboard/overview" end className={navLinkClass}>
                 <LayoutDashboard className="size-5 shrink-0" />
                 <span>Dashboard</span>
               </NavLink>

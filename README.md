@@ -131,6 +131,21 @@ Use these credentials to sign in and test role-based features (ensure these user
 
 ---
 
+## Test payment card (testing only)
+
+For testing payment flows (e.g. Stripe or similar), you can use this test Visa card:
+
+| Field           | Value                |
+|----------------|----------------------|
+| Card number    | 4242 4242 4242 4242  |
+| Expiry date    | 02 / 28               |
+| CVC            | 123                   |
+| Cardholder name| Shanta Shil           |
+
+**Use only in test environments.** Do not use real card details in development.
+
+---
+
 ## Project structure (high level)
 
 - `src/page/` — Page components (Home, Auth, Dashboard, Coverage, Rider, Send Parcel, etc.)

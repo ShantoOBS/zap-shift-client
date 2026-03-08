@@ -148,7 +148,7 @@ export default function MyParcel() {
                       ) : (
                         <button
                           onClick={() => handlePayment(parcel)}
-                          className="btn btn-sm btn-primary text-black"
+                          className="btn btn-sm bg-[#caeb66]  btn-primary text-black"
                         >
                           Pay
                         </button>

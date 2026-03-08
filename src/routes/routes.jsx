@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
      children:[
          {
            index: true,
-           element: <Navigate to="/dashboard/my-parcels" replace />
+           element: <Navigate to="/dashboard/overview" replace />
          },
          {
            path: 'overview',
