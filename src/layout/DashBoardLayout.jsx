@@ -235,19 +235,37 @@ export default function DashBoardLayout() {
                 <span>All Deliveries</span>
                 <Plus className="ml-auto size-4 shrink-0" />
               </NavLink>
-              <NavLink to="/dashboard/payment-history" className={navLinkClass}>
-                <FileText className="size-5 shrink-0" />
-                <span>Invoices</span>
-              </NavLink>
+              {role === "rider" && (
+              <>
+                <NavLink className={navLinkClass} to="/dashboard/assigned-deliveries">
+                  <FaTasks className="size-5 shrink-0" />
+                  {!isCollapsed && <span>Assigned Deliveries</span>}
+                </NavLink>
+                <NavLink className={navLinkClass} to="/dashboard/completed-deliveries">
+                  <SiGoogletasks className="size-5 shrink-0" />
+                  {!isCollapsed && <span>Completed Deliveries</span>}
+                </NavLink>
+              </>
+            )}
+
+            {role === "admin" && (
+              <>
+                <NavLink to="/dashboard/approve-riders" className={navLinkClass}>
+                  <TbBikeFilled className="size-5 shrink-0" />
+                  {!isCollapsed && <span>Approve Riders</span>}
+                </NavLink>
+                <NavLink to="/dashboard/assign-riders" className={navLinkClass}>
+                  <MdAssignmentAdd  className="size-5 shrink-0" />
+                  {!isCollapsed && <span>Assign Riders</span>}
+                </NavLink>
+                <NavLink to="/dashboard/users-management" className={navLinkClass}>
+                  <FaUserShield className="size-5 shrink-0" />
+                  {!isCollapsed && <span>Users Management</span>}
+                </NavLink>
+              </>
+            )}
               <Link
-                to="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
-              >
-                <Store className="size-5 shrink-0" />
-                <span>Stores</span>
-              </Link>
-              <Link
-                to="/dashboard"
+                to="/pricing-calculator"
                 className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
               >
                 <Tag className="size-5 shrink-0" />

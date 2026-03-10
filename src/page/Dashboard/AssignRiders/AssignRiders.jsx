@@ -133,12 +133,12 @@ const AssignRiders = () => {
                 </div>
             </div>
             <dialog ref={riderModalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
+                <div className="modal-box bg-white">
                     <h3 className="font-bold text-lg mb-3">Riders: {riders.length}</h3>
                     <div className="overflow-x-auto">
                         <table className="table w-full">
                             <thead>
-                                <tr className="border-b border-gray-200 bg-white/80 text-left text-sm font-medium text-gray-700">
+                                <tr className="border-b border-gray-200 bg-white text-left text-sm font-medium text-gray-700">
                                     <th className="px-4 py-4 md:px-6">#</th>
                                     <th className="px-4 py-4 md:px-6">Name</th>
                                     <th className="px-4 py-4 md:px-6">Email</th>
@@ -180,7 +180,7 @@ const AssignRiders = () => {
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
-                            <button className="btn">Close</button>
+                            <button className="btn btn-primary bg-[#caeb66]  btn-xs sm:btn-sm md:btn-md text-black">Close</button>
                         </form>
                     </div>
                 </div>

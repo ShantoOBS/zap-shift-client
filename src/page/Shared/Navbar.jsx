@@ -152,7 +152,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40  md:hidden"
               onClick={closeMenu}
               aria-hidden="true"
             />
@@ -161,7 +161,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-              className="fixed left-4 right-4 top-20 z-50 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl md:hidden"
+              className="fixed left-0 right-0 top-15 z-50 overflow-hidden  border border-gray-100 bg-white shadow-xl md:hidden"
             >
               <div className="max-h-[calc(100vh-6rem)] overflow-y-auto py-4">
                 {[...navItems, ...(user ? [{ to: "/dashboard", label: "My Parcel" }] : [])].map(
